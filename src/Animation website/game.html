@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   <title>Feature World: Random Chaos Edition</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <!-- Three.js -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+   <!-- Simplex Noise for Terrain -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+   <style>
+       body { margin: 0; overflow: hidden; background-color: #000; user-select: none; -webkit-user-select: none; }
+       #canvas-container { width: 100vw; height: 100vh; display: block; }
+       
+       /* UI Overlay Styles */
+       .ui-layer { position: absolute; pointer-events: none; width: 100%; height: 100%; top: 0; left: 0; }
+       .interactive { pointer-events: auto; }
+       
+       /* D-Pad */
+       .d-pad-btn {
+           background: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(4px);
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           border-radius: 12px;
+           color: white;
+           font-size: 24px;
+           transition: all 0.1s;
+           box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+       }
+       .d-pad-btn:active { background: rgba(255, 255, 255, 0.4); transform: scale(0.95); }
+       
+       /* Jump Button */
+       .jump-btn {
+           background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a);
+           border: 2px solid #86efac;
+           border-radius: 50%;
+           box-shadow: 0 0 15px #4ade80;
+           transition: transform 0.1s;
+       }
+       .jump-btn:active { transform: scale(0.9); box-shadow: 0 0 5px #4ade80; }
+
+       /* Notifications */
+       #notification-area {
+           top: 20px;
+           left: 50%;
+           transform: translateX(-50%);
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           gap: 10px;
+       }
+       .notif {
+           background: rgba(0, 0, 0, 0.7);
+           border: 1px solid rgba(255, 255, 255, 0.2);
+           color: #fff;
+           padding: 10px 20px;
+           border-radius: 999px;
+           font-family: 'Courier New', Courier, monospace;
+           font-weight: bold;
+           opacity: 0;
+           transform: translateY(-20px);
+           transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+           text-shadow: 0 0 5px currentColor;
+       }
+       .notif.show { opacity: 1; transform: translateY(0); }
+       
+       .notif.speed { color: #facc15; border-color: #facc15; box-shadow: 0 0 10px #facc15; }
+       .notif.slow { color: #60a5fa; border-color: #60a5fa; box-shadow: 0 0 10px #60a5fa; }
+       .notif.invis { color: #a78bfa; border-color: #a78bfa; box-shadow: 0 0 10px #a78bfa; }
+       .notif.normal { color: #4ade80; border-color: #4ade80; box-shadow: 0 0 10px #4ade80; }
+
+   </style>
+</head>
+<body>
+
+   <!-- 3D Canvas -->
+   <div id="canvas-container"></div>
+
+   <!-- UI Layer -->
+   <div class="ui-layer">
+       
+       <!-- Notifications -->
+       <div id="notification-area" class="absolute w-full flex flex-col items-center pointer-events-none z-50"></div>
+
+       <!-- Controls Container -->
+       <div class="absolute bottom-8 left-0 w-full px-8 flex justify-between items-end z-40 interactive">
+           
+           <!-- D-Pad (Bottom Left) -->
+           <div class="grid grid-cols-3 gap-2 w-40 h-40">
+               <div></div>
+               <button id="btn-up" class="d-pad-btn flex items-center justify-center">▲</button>
+               <div></div>
+               <button id="btn-left" class="d-pad-btn flex items-center justify-center">◀</button>
+               <div class="flex items-center justify-center text-white opacity-50 text-xs">MOVE</div>
+               <button id="btn-right" class="d-pad-btn flex items-center justify-center">▶</button>
+               <div></div>
+               <button id="btn-down" class="d-pad-btn flex items-center justify-center">▼</button>
+               <div></div>
+           </div>
+
+           <!-- Jump Button (Bottom Right) -->
+           <button id="btn-jump" class="jump-btn w-24 h-24 flex items-center justify-center text-white font-bold text-lg tracking-wider mb-2 mr-2">
+               JUMP
+           </button>
+       </div>
+   </div>
+
+   <script>
+       // --- Configuration ---
+       const CONFIG = {
+           worldSize: 400,
+           chunkSize: 40,
+           colors: {
+               sky: 0x87CEEB,
+               ground: 0x3a5f0b,
+               charHead: 0x22c55e,
+               charBody: 0x78350f,
+               fog: 0x87CEEB
+           },
+           speed: {
+               normal: 0.15,
+               fast: 0.35,
+               slow: 0.05
+           }
+       };
+
+       // --- Global State ---
+       const state = {
+           keys: { w: false, a: false, s: false, d: false, space: false },
+           velocity: new THREE.Vector3(),
+           direction: new THREE.Vector3(),
+           isJumping: false,
+           speedMultiplier: 1,
+           invisibility: 0, // 0 to 1 (1 is fully invisible)
+           effects: {
+               speed: false,
+               slow: false,
+               invis: false
+           },
+           time: 0
+       };
+
+       // --- Three.js Setup ---
+       const container = document.getElementById('canvas-container');
+       const scene = new THREE.Scene();
+       scene.background = new THREE.Color(CONFIG.colors.sky);
+       scene.fog = new THREE.Fog(CONFIG.colors.fog, 20, 90);
+
+       const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+       const renderer = new THREE.WebGLRenderer({ antialias: true });
+       renderer.setSize(window.innerWidth, window.innerHeight);
+       renderer.shadowMap.enabled = true;
+       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+       container.appendChild(renderer.domElement);
+
+       // --- Lighting ---
+       const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+       hemiLight.position.set(0, 200, 0);
+       scene.add(hemiLight);
+
+       const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+       dirLight.position.set(50, 100, 50);
+       dirLight.castShadow = true;
+       dirLight.shadow.camera.top = 50;
+       dirLight.shadow.camera.bottom = -50;
+       dirLight.shadow.camera.left = -50;
+       dirLight.shadow.camera.right = 50;
+       dirLight.shadow.mapSize.width = 2048;
+       dirLight.shadow.mapSize.height = 2048;
+       scene.add(dirLight);
+
+       // --- Terrain Generation ---
+       const simplex = new SimplexNoise();
+       const geometry = new THREE.PlaneGeometry(CONFIG.worldSize, CONFIG.worldSize, 128, 128);
+       geometry.rotateX(-Math.PI / 2);
+
+       const count = geometry.attributes.position.count;
+       for (let i = 0; i < count; i++) {
+           const x = geometry.attributes.position.getX(i);
+           const z = geometry.attributes.position.getZ(i);
+           // Rolling hills noise
+           const noise = simplex.noise2D(x * 0.02, z * 0.02) * 4 + simplex.noise2D(x * 0.1, z * 0.1) * 1;
+           geometry.attributes.position.setY(i, noise);
+       }
+       geometry.computeVertexNormals();
+
+       const material = new THREE.MeshStandardMaterial({ 
+           color: CONFIG.colors.ground,
+           roughness: 0.8,
+           flatShading: true
+       });
+       const terrain = new THREE.Mesh(geometry, material);
+       terrain.receiveShadow = true;
+       scene.add(terrain);
+
+       // --- Character Creation ---
+       const charGroup = new THREE.Group();
+       
+       // Body
+       const bodyGeo = new THREE.BoxGeometry(1, 1.5, 0.6);
+       const bodyMat = new THREE.MeshStandardMaterial({ color: CONFIG.colors.charBody });
+       const body = new THREE.Mesh(bodyGeo, bodyMat);
+       body.position.y = 0.75;
+       body.castShadow = true;
+       charGroup.add(body);
+
+       // Head
+       const headGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+       const headMat = new THREE.MeshStandardMaterial({ color: CONFIG.colors.charHead });
+       const head = new THREE.Mesh(headGeo, headMat);
+       head.position.y = 1.9;
+       head.castShadow = true;
+       charGroup.add(head);
+
+       // Eyes
+       const eyeGeo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+       const eyeMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+       const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+       eyeL.position.set(-0.2, 2, 0.41);
+       const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
+       eyeR.position.set(0.2, 2, 0.41);
+       charGroup.add(eyeL);
+       charGroup.add(eyeR);
+
+       scene.add(charGroup);
+
+       // --- Clouds ---
+       const cloudGroup = new THREE.Group();
+       const cloudGeo = new THREE.BoxGeometry(1,1,1);
+       const cloudMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+       
+       for(let i=0; i<30; i++) {
+           const cloud = new THREE.Mesh(cloudGeo, cloudMat);
+           const scale = 2 + Math.random() * 3;
+           cloud.scale.set(scale * 2, scale * 0.8, scale);
+           cloud.position.set(
+               (Math.random() - 0.5) * 200,
+               20 + Math.random() * 20,
+               (Math.random() - 0.5) * 200
+           );
+           cloudGroup.add(cloud);
+       }
+       scene.add(cloudGroup);
+
+       // --- Chaos Objects (Collectibles) ---
+       const chaosObjects = [];
+       const geometries = [
+           new THREE.BoxGeometry(1,1,1),
+           new THREE.SphereGeometry(0.6, 16, 16),
+           new THREE.ConeGeometry(0.6, 1.2, 8),
+           new THREE.TorusGeometry(0.5, 0.2, 8, 16)
+       ];
+       
+       const effectTypes = ['speed', 'slow', 'invis', 'normal'];
+
+       function createChaosObject() {
+           const geo = geometries[Math.floor(Math.random() * geometries.length)];
+           const color = new THREE.Color().setHSL(Math.random(), 1, 0.5);
+           const mat = new THREE.MeshStandardMaterial({ 
+               color: color, 
+               emissive: color,
+               emissiveIntensity: 0.5,
+               roughness: 0.2,
+               metalness: 0.5
+           });
+           const mesh = new THREE.Mesh(geo, mat);
+           
+           // Random Position
+           const x = (Math.random() - 0.5) * 150;
+           const z = (Math.random() - 0.5) * 150;
+           const y = getTerrainHeight(x, z) + 1.5;
+           
+           mesh.position.set(x, y, z);
+           mesh.castShadow = true;
+           
+           // Metadata
+           mesh.userData = {
+               type: effectTypes[Math.floor(Math.random() * effectTypes.length)],
+               rotSpeed: (Math.random() - 0.5) * 0.1,
+               floatOffset: Math.random() * Math.PI * 2
+           };
+
+           scene.add(mesh);
+           chaosObjects.push(mesh);
+       }
+
+       // Spawn initial objects
+       for(let i=0; i<40; i++) createChaosObject();
+
+       // --- Helper Functions ---
+       function getTerrainHeight(x, z) {
+           // Re-calculate noise for collision detection
+           return simplex.noise2D(x * 0.02, z * 0.02) * 4 + simplex.noise2D(x * 0.1, z * 0.1) * 1;
+       }
+
+       function showNotification(text, type) {
+           const container = document.getElementById('notification-area');
+           const el = document.createElement('div');
+           el.className = `notif ${type}`;
+           el.innerText = text;
+           container.appendChild(el);
+           
+           // Trigger animation
+           requestAnimationFrame(() => {
+               el.classList.add('show');
+           });
+
+           setTimeout(() => {
+               el.classList.remove('show');
+               setTimeout(() => el.remove(), 500);
+           }, 2000);
+       }
+
+       function triggerEffect(type) {
+           // Reset previous effects
+           state.speedMultiplier = 1;
+           state.invisibility = 0;
+           state.effects.speed = false;
+           state.effects.slow = false;
+           state.effects.invis = false;
+
+           // Apply new effect
+           if (type === 'speed') {
+               state.speedMultiplier = 2.5;
+               state.effects.speed = true;
+               showNotification("SPEED BOOST!", "speed");
+           } else if (type === 'slow') {
+               state.speedMultiplier = 0.4;
+               state.effects.slow = true;
+               showNotification("TIME DILATION!", "slow");
+           } else if (type === 'invis') {
+               state.invisibility = 0.8;
+               state.effects.invis = true;
+               showNotification("GHOST MODE!", "invis");
+           } else {
+               showNotification("STATUS NORMAL", "normal");
+           }
+       }
+
+       // --- Input Handling ---
+       const handleKey = (e, bool) => {
+           const k = e.key.toLowerCase();
+           if (k === 'w' || k === 'arrowup') state.keys.w = bool;
+           if (k === 'a' || k === 'arrowleft') state.keys.a = bool;
+           if (k === 's' || k === 'arrowdown') state.keys.s = bool;
+           if (k === 'd' || k === 'arrowright') state.keys.d = bool;
+           if (k === ' ' && bool && !state.isJumping) {
+               state.velocity.y = 0.4; // Jump impulse
+               state.isJumping = true;
+           }
+       };
+
+       window.addEventListener('keydown', (e) => handleKey(e, true));
+       window.addEventListener('keyup', (e) => handleKey(e, false));
+
+       // Touch UI Bindings
+       const bindBtn = (id, key) => {
+           const btn = document.getElementById(id);
+           btn.addEventListener('touchstart', (e) => { e.preventDefault(); state.keys[key] = true; });
+           btn.addEventListener('touchend', (e) => { e.preventDefault(); state.keys[key] = false; });
+           btn.addEventListener('mousedown', (e) => { state.keys[key] = true; });
+           btn.addEventListener('mouseup', (e) => { state.keys[key] = false; });
+           btn.addEventListener('mouseleave', (e) => { state.keys[key] = false; });
+       };
+
+       bindBtn('btn-up', 'w');
+       bindBtn('btn-down', 's');
+       bindBtn('btn-left', 'a');
+       bindBtn('btn-right', 'd');
+       
+       const jumpBtn = document.getElementById('btn-jump');
+       const doJump = (e) => {
+           if(e) e.preventDefault();
+           if (!state.isJumping) {
+               state.velocity.y = 0.4;
+               state.isJumping = true;
+           }
+       };
+       jumpBtn.addEventListener('touchstart', doJump);
+       jumpBtn.addEventListener('mousedown', doJump);
+
+       // --- Main Loop ---
+       const clock = new THREE.Clock();
+
+       function animate() {
+           requestAnimationFrame(animate);
+           
+           const delta = clock.getDelta();
+           state.time += delta;
+
+           // 1. Character Movement Logic
+           const speed = CONFIG.speed.normal * state.speedMultiplier;
+           
+           // Determine direction based on camera
+           const forward = new THREE.Vector3();
+           camera.getWorldDirection(forward);
+           forward.y = 0;
+           forward.normalize();
+           
+           const right = new THREE.Vector3();
+           right.crossVectors(forward, new THREE.Vector3(0, 1, 0));
+
+           const moveDir = new THREE.Vector3();
+           if (state.keys.w) moveDir.add(forward);
+           if (state.keys.s) moveDir.sub(forward);
+           if (state.keys.d) moveDir.add(right);
+           if (state.keys.a) moveDir.sub(right);
+
+           if (moveDir.length() > 0) {
+               moveDir.normalize();
+               // Smooth rotation
+               const targetRotation = Math.atan2(moveDir.x, moveDir.z);
+               // Simple lerp for rotation
+               let rotDiff = targetRotation - charGroup.rotation.y;
+               // Normalize angle
+               while (rotDiff > Math.PI) rotDiff -= Math.PI * 2;
+               while (rotDiff < -Math.PI) rotDiff += Math.PI * 2;
+               charGroup.rotation.y += rotDiff * 0.1;
+
+               // Apply velocity
+               state.velocity.x = moveDir.x * speed;
+               state.velocity.z = moveDir.z * speed;
+
+               // Bobbing animation
+               charGroup.position.y += Math.sin(state.time * 15) * 0.02;
+           } else {
+               state.velocity.x *= 0.8; // Friction
+               state.velocity.z *= 0.8;
+           }
+
+           // Apply Gravity
+           state.velocity.y -= 0.02; // Gravity
+
+           // Update Position
+           charGroup.position.x += state.velocity.x;
+           charGroup.position.z += state.velocity.z;
+           charGroup.position.y += state.velocity.y;
+
+           // Terrain Collision (Ground)
+           const groundHeight = getTerrainHeight(charGroup.position.x, charGroup.position.z);
+           
+           if (charGroup.position.y < groundHeight + 1.5) { // 1.5 is approx char height/offset
+               charGroup.position.y = groundHeight + 1.5;
+               state.velocity.y = 0;
+               state.isJumping = false;
+           }
+
+           // 2. Camera Follow
+           const relativeCameraOffset = new THREE.Vector3(0, 5, -10);
+           const cameraOffset = relativeCameraOffset.applyMatrix4(charGroup.matrixWorld);
+           
+           // Smooth camera follow
+           camera.position.lerp(cameraOffset, 0.1);
+           camera.lookAt(charGroup.position.x, charGroup.position.y + 2, charGroup.position.z);
+
+           // 3. Chaos Objects Animation & Collision
+           chaosObjects.forEach((obj, index) => {
+               // Float and rotate
+               obj.rotation.x += obj.userData.rotSpeed;
+               obj.rotation.y += obj.userData.rotSpeed;
+               obj.position.y += Math.sin(state.time * 2 + obj.userData.floatOffset) * 0.02;
+
+               // Collision with player
+               const dist = charGroup.position.distanceTo(obj.position);
+               if (dist < 2.0) {
+                   triggerEffect(obj.userData.type);
+                   
+                   // Respawn object elsewhere
+                   obj.position.x = (Math.random() - 0.5) * 150;
+                   obj.position.z = (Math.random() - 0.5) * 150;
+                   obj.position.y = getTerrainHeight(obj.position.x, obj.position.z) + 1.5;
+                   
+                   // Visual pop effect
+                   obj.scale.set(2,2,2);
+               }
+               
+               // Smooth scale back to 1
+               obj.scale.lerp(new THREE.Vector3(1,1,1), 0.1);
+           });
+
+           // 4. Visual Effects Updates
+           // Invisibility
+           const targetOpacity = 1 - state.invisibility;
+           bodyMat.opacity = targetOpacity;
+           headMat.opacity = targetOpacity;
+           bodyMat.transparent = true;
+           headMat.transparent = true;
+
+           // Speed lines or FOV change
+           const targetFOV = state.effects.speed ? 80 : 60;
+           camera.fov += (targetFOV - camera.fov) * 0.1;
+           camera.updateProjectionMatrix();
+
+           // Cloud movement
+           cloudGroup.rotation.y += 0.0005;
+
+           renderer.render(scene, camera);
+       }
+
+       // Handle Resize
+       window.addEventListener('resize', () => {
+           camera.aspect = window.innerWidth / window.innerHeight;
+           camera.updateProjectionMatrix();
+           renderer.setSize(window.innerWidth, window.innerHeight);
+       });
+
+       // Start
+       animate();
+
+   </script>
+</body>
+</html>

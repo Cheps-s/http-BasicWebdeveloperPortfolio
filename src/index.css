@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark text-white overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] bg-clip-text text-transparent;
+    animation: gradient 8s linear infinite;
+  }
+  
+  .glass-card {
+    @apply bg-surface/60 backdrop-blur-xl border border-primary/10 rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply border-primary/30 -translate-y-1 shadow-2xl shadow-primary/15;
+  }
+  
+  .skill-tag {
+    @apply bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 rounded-full transition-all duration-300;
+  }
+  
+  .skill-tag:hover {
+    @apply from-primary/20 to-secondary/20 scale-105;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

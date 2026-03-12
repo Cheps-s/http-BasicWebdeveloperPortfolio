@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelHub - Retro Gaming & Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!--header-->
+    <header>
+        <!--NavBar-->
+        <nav>
+            <div class="Logo-1">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Zzc21kamFpNXFhNmU1MDh3YnpnbHh4a29ycXRscGI2ZmMxYnZ2OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4auwKGWAI8EaEMs8I5/giphy.gif" alt="Pixel Logo" class="logo">
+                <span class="logo-text">PixelHub</span>
+            </div>
+            <ul class="animation-navbar">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#character">Characters</a></li>
+                <li><a href="#game">Play Game</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!--Section Anything-->
+    <main>
+        <div class="section-1" id="home">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="Welcome to PixelHub">Welcome to PixelHub</h1>
+            </div>
+            <h2 class="typewriter">Hello, My Name is Nyl</h2>
+            <span class="handle">@nyloz</span>
+            <p class="fade-in-text">Discover innovative pixel solutions tailored to your creative needs.</p>
+            <div class="button-group">
+                <button type="button" name="myButton" class="btn-grad" onclick="showWelcome()">
+                    Click me!
+                </button>
+                <button type="button" class="btn-grad btn-secondary" onclick="scrollToSection('game')">
+                    Play Game 🎮
+                </button>
+            </div>
+            <div class="floating-icons">
+                <span>👾</span>
+                <span>🎮</span>
+                <span>💎</span>
+                <span>⭐</span>
+            </div>
+        </div>
+    </main>
+
+    <section class="parents" id="overview">
+        <div class="is-centered card-3d">
+            <div class="card-content">
+                <h1>Overview</h1>
+                <p>At PixelHub, we blend retro aesthetics with modern innovation. Our pixel-perfect solutions empower creators to build immersive digital experiences that stand out in today's crowded market.</p>
+                <div class="tech-stack">
+                    <span class="pixel-badge">Pixel Art</span>
+                    <span class="pixel-badge">Web Design</span>
+                    <span class="pixel-badge">Animation</span>
+                </div>
+            </div>
+            <div class="image-content">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGFydzRzOTltcWtzeWZnY2ozazl2eWIzNXAwNGJqa3c3M2E2MW54aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp0wjj3Vxmh5lLmGgB/giphy.gif" alt="Character Image">
+            </div>
+        </div>
+        
+        <div class="is-centered3 card-3d" id="services">
+            <div class="card-content">
+                <h1>Our Services</h1>
+                <p>Comprehensive pixel solutions for the modern digital landscape:</p>
+                <ul class="service-list">
+                    <li>
+                        <strong>🎨 Pixel Art Design</strong>
+                        <span>Custom sprites, backgrounds, and animations</span>
+                    </li>
+                    <li>
+                        <strong>💻 Web Development</strong>
+                        <span>Retro-styled modern websites</span>
+                    </li>
+                    <li>
+                        <strong>🎮 Game Assets</strong>
+                        <span>Complete asset packs for indie developers</span>
+                    </li>
+                    <li>
+                        <strong>✨ UI/UX Design</strong>
+                        <span>Pixel-perfect interface design</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="image-content2">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExenp1djRja2gwMDNtdGJkcGZnbHBsNGJwNmhkemNwOGtjNjB6b3JsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/xd22iKsu0Wn0Q/giphy.gif" alt="Services">
+            </div>
+        </div>
+
+        <div class="is-centered4 card-3d" id="contact">
+            <div class="card-content">
+                <h1>Contact Us</h1>
+                <p>Ready to start your pixel journey? Reach out!</p>
+                <ul class="contact-info">
+                    <li>
+                        <span class="icon">📧</span>
+                        <div>
+                            <strong>Email</strong>
+                            <span>manliclicandrei58@gmail.com</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">📱</span>
+                        <div>
+                            <strong>Discord</strong>
+                            <span>nylinaa</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🐦</span>
+                        <div>
+                            <strong>Facebook</strong>
+                            <span>Andrei Nyl Manliclic</span>
+                        </div>
+                    </li>
+                </ul>
+                <form class="pixel-form" onsubmit="handleSubmit(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="3" required></textarea>
+                    <button type="submit" class="btn-grad">Send Message</button>
+                </form>
+            </div>
+            <div class="image-content3">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhtcHRtamF6cDJlNmdlbG9tenRoZGl5amN2azlnMW95YXc5MWk5NyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1hCn9kUdtA65wDSvXI/giphy.gif" alt="Contact">
+            </div>
+        </div>
+
+        <div class="is-centered5 card-3d">
+            <div class="card-content">
+                <h1>Why PixelHub?</h1>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick turnaround without compromising quality</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Precision</h3>
+                        <p>Every pixel placed with purpose</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Innovation</h3>
+                        <p>Cutting-edge techniques, classic style</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Passion</h3>
+                        <p>We love what we create</p>
+                    </div>
+                </div>
+            </div>
+            <div class="image-content5">
+                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Zzc21kamFpNXFhNmU1MDh3YnpnbHh4a29ycXRscGI2ZmMxYnZ2OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4auwKGWAI8EaEMs8I5/giphy.gif" alt="Why Us">
+            </div>
+        </div>
+    </section>
+
+    <!-- MINI GAME SECTION -->
+    <section class="game-section" id="game">
+        <div class="game-container">
+            <h2 class="section-title">Pixel Catcher</h2>
+            <p class="game-subtitle">Catch the falling pixels! Use arrow keys or touch to move.</p>
+            
+            <div class="game-wrapper">
+                <canvas id="gameCanvas" width="800" height="500"></canvas>
+                
+                <div class="game-ui">
+                    <div class="score-board">
+                        <div class="score-item">
+                            <span class="label">SCORE</span>
+                            <span id="scoreValue" class="value">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">LEVEL</span>
+                            <span id="levelValue" class="value">1</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">LIVES</span>
+                            <span id="livesValue" class="value">❤️❤️❤️</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="startBtn" class="btn-grad game-btn">START GAME</button>
+                        <button id="pauseBtn" class="btn-grad game-btn" style="display:none;">PAUSE</button>
+                        <button id="resetBtn" class="btn-grad game-btn btn-secondary">RESET</button>
+                    </div>
+                    
+                    <div class="power-ups">
+                        <div class="power-up-item" id="powerUpShield">
+                            <span class="icon">🛡️</span>
+                            <span class="name">Shield</span>
+                            <span class="status" id="shieldStatus">OFF</span>
+                        </div>
+                        <div class="power-up-item" id="powerUpMagnet">
+                            <span class="icon">🧲</span>
+                            <span class="name">Magnet</span>
+                            <span class="status" id="magnetStatus">OFF</span>
+                        </div>
+                        <div class="power-up-item" id="powerUpMultiplier">
+                            <span class="icon">⚡</span>
+                            <span class="name">2x Score</span>
+                            <span class="status" id="multiplierStatus">OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-instructions">
+                <div class="instruction-card">
+                    <span class="icon">🎯</span>
+                    <h4>Goal</h4>
+                    <p>Catch colorful pixels with your basket</p>
+                </div>
+                <div class="instruction-card">
+                    <span class="icon">⌨️</span>
+                    <h4>Controls</h4>
+                    <p>Arrow keys or touch/drag to move</p>
+                </div>
+                <div class="instruction-card">
+                    <span class="icon">⚠️</span>
+                    <h4>Avoid</h4>
+                    <p>Red bombs will cost you a life!</p>
+                </div>
+                <div class="instruction-card">
+                    <span class="icon">💎</span>
+                    <h4>Power-ups</h4>
+                    <p>Collect special items for bonuses</p>
+                </div>
+            </div>
+            
+            <div class="leaderboard">
+                <h3>🏆 High Scores</h3>
+                <ul id="highScoresList">
+                    <li><span class="rank">1</span><span class="name">PIXEL</span><span class="score">1000</span></li>
+                    <li><span class="rank">2</span><span class="name">RETRO</span><span class="score">750</span></li>
+                    <li><span class="rank">3</span><span class="name">ARCADE</span><span class="score">500</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <h2 class="section-title">Our Impact</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Pixels Placed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">Support Hours</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Gallery -->
+    <section class="wrapper" id="character">
+        <div class="hero-content">
+            <h1>Character Collection</h1>
+            <p class="subtitle">Click any character to view details</p>
+            
+            <div class="hero-grid">
+                <div class="hero-card" data-character="warrior">
+                    <div class="card-inner">
+                        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGFydzRzOTltcWtzeWZnY2ozazl2eWIzNXAwNGJqa3c3M2E2MW54aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp0wjj3Vxmh5lLmGgB/giphy.gif" alt="Warrior">
+                        <div class="card-overlay">
+                            <h3>Pixel Warrior</h3>
+                            <span class="rarity rare">Rare</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="mage">
+                    <div class="card-inner">
+                        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExenp1djRja2gwMDNtdGJkcGZnbHBsNGJwNmhkemNwOGtjNjB6b3JsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/xd22iKsu0Wn0Q/giphy.gif" alt="Mage">
+                        <div class="card-overlay">
+                            <h3>Code Mage</h3>
+                            <span class="rarity epic">Epic</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="rogue">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhtcHRtamF6cDJlNmdlbG9tenRoZGl5amN2azlnMW95YXc5MWk5NyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1hCn9kUdtA65wDSvXI/giphy.gif" alt="Rogue">
+                        <div class="card-overlay">
+                            <h3>Shadow Rogue</h3>
+                            <span class="rarity common">Common</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="paladin">
+                    <div class="card-inner">
+                        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Zzc21kamFpNXFhNmU1MDh3YnpnbHh4a29ycXRscGI2ZmMxYnZ2OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4auwKGWAI8EaEMs8I5/giphy.gif" alt="Paladin">
+                        <div class="card-overlay">
+                            <h3>Light Paladin</h3>
+                            <span class="rarity legendary">Legendary</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="archer">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhtcHRtamF6cDJlNmdlbG9tenRoZGl5amN2azlnMW95YXc5MWk5NyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/4QuKYrcMj2In6FAAzd/giphy.gif" alt="Archer">
+                        <div class="card-overlay">
+                            <h3>Pixel Archer</h3>
+                            <span class="rarity rare">Rare</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="necromancer">
+                    <div class="card-inner">
+                        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGFwOG16MTJrbDAzenI5Y2Z4ZGpnbzMycnhtYTNxYzE1cjJiYmtybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KrYdnYXBJY0qXcYdcj/giphy.gif" alt="Necromancer">
+                        <div class="card-overlay">
+                            <h3>Dark Coder</h3>
+                            <span class="rarity epic">Epic</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="bard">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YTdhaW0wamd4MHlxajFuanhoM2dlODYwcHo3a20zbWRpMnVhYjBsOSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/87aLO68Fi4nX4llnnQ/giphy.gif" alt="Bard">
+                        <div class="card-overlay">
+                            <h3>Digital Bard</h3>
+                            <span class="rarity common">Common</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="druid">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YTdhaW0wamd4MHlxajFuanhoM2dlODYwcHo3a20zbWRpMnVhYjBsOSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/e7Pkc6DwN6IWHvvizL/giphy.gif" alt="Druid">
+                        <div class="card-overlay">
+                            <h3>Pixel Druid</h3>
+                            <span class="rarity rare">Rare</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="monk">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dTd5eHo1eWo4dnB2YTdsZno5aGcwb2Y4NHB5Y3Rpc3N0MzFxdGY5byZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/SGGHAPCjED1OcW6ixv/giphy.gif" alt="Monk">
+                        <div class="card-overlay">
+                            <h3>Byte Monk</h3>
+                            <span class="rarity epic">Epic</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-card" data-character="alchemist">
+                    <div class="card-inner">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dTd5eHo1eWo4dnB2YTdsZno5aGcwb2Y4NHB5Y3Rpc3N0MzFxdGY5byZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/Vtty3pr6C0sWKUdlQn/giphy.gif" alt="Alchemist">
+                        <div class="card-overlay">
+                            <h3>CSS Alchemist</h3>
+                            <span class="rarity legendary">Legendary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <h2 class="section-title">Latest Works</h2>
+        <div class="gallery-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="characters">Characters</button>
+            <button class="filter-btn" data-filter="scenes">Scenes</button>
+            <button class="filter-btn" data-filter="ui">UI Design</button>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="characters">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGFydzRzOTltcWtzeWZnY2ozazl2eWIzNXAwNGJqa3c3M2E2MW54aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp0wjj3Vxmh5lLmGgB/giphy.gif" alt="Work 1">
+                <div class="gallery-overlay">
+                    <h4>Character Set 1</h4>
+                    <p>RPG Heroes Pack</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="scenes">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExenp1djRja2gwMDNtdGJkcGZnbHBsNGJwNmhkemNwOGtjNjB6b3JsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/xd22iKsu0Wn0Q/giphy.gif" alt="Work 2">
+                <div class="gallery-overlay">
+                    <h4>Forest Scene</h4>
+                    <p>Game Background</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="ui">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhtcHRtamF6cDJlNmdlbG9tenRoZGl5amN2azlnMW95YXc5MWk5NyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1hCn9kUdtA65wDSvXI/giphy.gif" alt="Work 3">
+                <div class="gallery-overlay">
+                    <h4>HUD Design</h4>
+                    <p>Interface Elements</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="characters">
+                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Zzc21kamFpNXFhNmU1MDh3YnpnbHh4a29ycXRscGI2ZmMxYnZ2OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4auwKGWAI8EaEMs8I5/giphy.gif" alt="Work 4">
+                <div class="gallery-overlay">
+                    <h4>Boss Characters</h4>
+                    <p>Enemy Sprites</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="scenes">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhtcHRtamF6cDJlNmdlbG9tenRoZGl5amN2azlnMW95YXc5MWk5NyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/4QuKYrcMj2In6FAAzd/giphy.gif" alt="Work 5">
+                <div class="gallery-overlay">
+                    <h4>City Night</h4>
+                    <p>Cyberpunk Scene</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="ui">
+                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGFwOG16MTJrbDAzenI5Y2Z4ZGpnbzMycnhtYTNxYzE1cjJiYmtybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KrYdnYXBJY0qXcYdcj/giphy.gif" alt="Work 6">
+                <div class="gallery-overlay">
+                    <h4>Menu System</h4>
+                    <p>Navigation UI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">Client Quests</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-card active">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"PixelHub transformed our game with incredible pixel art. The attention to detail is unmatched!"</p>
+                <div class="client">
+                    <strong>Indie Game Studio</strong>
+                    <span>Project: RPG Adventure</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Fast, professional, and incredibly creative. Our website has never looked better!"</p>
+                <div class="client">
+                    <strong>Tech Startup</strong>
+                    <span>Project: Brand Website</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"The character designs exceeded our expectations. True pixel perfection!"</p>
+                <div class="client">
+                    <strong>Mobile Developer</strong>
+                    <span>Project: Character Pack</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pixel-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>PixelHub</h4>
+                <p>Creating digital magic, one pixel at a time.</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn">Twitter</a>
+                    <a href="#" class="social-btn">Discord</a>
+                    <a href="#" class="social-btn">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe for pixel updates!</p>
+                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                    <input type="email" placeholder="Enter email" required>
+                    <button type="submit" class="btn-small">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PixelHub. All pixels reserved. 👾</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="game-modal">
+        <div class="game-modal-content">
+            <h2>GAME OVER!</h2>
+            <div class="final-score">
+                <span>FINAL SCORE</span>
+                <span id="finalScoreValue">0</span>
+            </div>
+            <div class="new-high-score" id="newHighScore" style="display:none;">
+                🎉 NEW HIGH SCORE! 🎉
+            </div>
+            <button class="btn-grad" onclick="restartGame()">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

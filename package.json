@@ -6,10 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "cd server && npm start",
+    "server-dev": "cd server && npm run dev",
+    "both": "concurrently \"npm run server\" \"npm run dev\"",
+    "install-all": "npm install && cd server && npm install"
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
@@ -21,8 +27,10 @@
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
-    "vite": "^7.3.1"
+    "vite": "^8.0.0"
   }
 }

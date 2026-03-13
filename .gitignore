@@ -36,3 +36,5 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 '@ | Out-File -FilePath ".gitignore" -Encoding utf8 -Force
+.vercel
+.env*.local

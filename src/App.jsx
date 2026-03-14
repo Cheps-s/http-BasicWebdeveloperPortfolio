@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu, X, ChevronDown, ArrowDown,
@@ -11,11 +12,23 @@ import { useProjects } from './hooks/useProjects'
 import AnimatedSection from './components/AnimatedSection'
 import AnimatedProjectCard from './components/AnimatedProjectCard'
 import ContactForm from './components/ContactForm'
+=======
+import Navbar     from './components/Navbar'
+import Hero       from './components/Hero'
+import About      from './components/About'
+import Projects   from './components/Project'
+import Skills     from './components/Skills'
+import Services   from './components/Services'
+import Blog       from './components/Blog'
+import Experience from './components/Experience'
+import Contact    from './components/Contact'
+import Footer     from './components/Footer'
+>>>>>>> 9c898fb (update)
 
 function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
   const [mouseDown, setMouseDown] = useState(false)
+<<<<<<< HEAD
   const { visitorCount } = useVisitorTracking()
   const { projects, loading } = useProjects()
 
@@ -30,13 +43,25 @@ function App() {
     window.addEventListener('mousedown', handleMouseDown)
     window.addEventListener('mouseup', handleMouseUp)
 
+=======
+
+  // Custom cursor tracking
+  useEffect(() => {
+    const onMove  = (e) => setCursorPos({ x: e.clientX, y: e.clientY })
+    const onDown  = ()  => setMouseDown(true)
+    const onUp    = ()  => setMouseDown(false)
+    window.addEventListener('mousemove',  onMove)
+    window.addEventListener('mousedown',  onDown)
+    window.addEventListener('mouseup',    onUp)
+>>>>>>> 9c898fb (update)
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mousedown', handleMouseDown)
-      window.removeEventListener('mouseup', handleMouseUp)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mousedown', onDown)
+      window.removeEventListener('mouseup',   onUp)
     }
   }, [])
 
+<<<<<<< HEAD
   const scrollToSection = (id) => {
     const element = document.querySelector(id)
     if (element) {
@@ -53,10 +78,35 @@ function App() {
           left: cursorPos.x - 10,
           top: cursorPos.y - 10,
           scale: mouseDown ? 0.8 : 1
+=======
+  // Scroll-reveal — runs once after mount
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('active')
+      }),
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div className="antialiased" style={{ userSelect: 'none' }}>
+
+      {/* Custom cursor — hidden on mobile via CSS */}
+      <div
+        className="custom-cursor"
+        style={{
+          left:      cursorPos.x - 10,
+          top:       cursorPos.y - 10,
+          transform: mouseDown ? 'scale(0.7)' : 'scale(1)',
+>>>>>>> 9c898fb (update)
         }}
         transition={{ type: 'spring', stiffness: 500, damping: 28 }}
       />
 
+<<<<<<< HEAD
       <motion.nav
         className="fixed w-full z-50 nav-blur border-b border-white/5 transition-all duration-300"
         initial={{ y: -100 }}
@@ -544,6 +594,20 @@ function App() {
           </div>
         </div>
       </footer>
+=======
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Services />
+        <Blog />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer />
+>>>>>>> 9c898fb (update)
     </div>
   )
 }

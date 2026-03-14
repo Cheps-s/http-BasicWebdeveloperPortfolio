@@ -45,7 +45,6 @@
             }
         }
     </script>
-
     <style>
         body {
             background-color: #0a0a0f;
@@ -155,14 +154,14 @@
         .project-card:hover::before {
             left: 100%;
         }
-        
-        .reveal {
+
+        .reveal{
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(39px);
+            transition: all 0.7s ease-out;
         }
-        
-        .reveal.active {
+
+        .reveal.active{
             opacity: 1;
             transform: translateY(0);
         }
@@ -196,15 +195,15 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="text-2xl font-display font-bold gradient-text">ANM</a>
-                
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
                     <a href="#projects" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Projects</a>
                     <a href="#skills" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Skills</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Services</a>
+                    <a href="#blog" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Blog</a>
                     <a href="#experience" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Experience</a>
                     <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all">Contact</a>
                 </div>
-
                 <!-- Mobile Menu Button -->
                 <button class="md:hidden text-white" id="mobile-menu-btn">
                     <i data-lucide="menu" class="w-6 h-6"></i>
@@ -217,6 +216,8 @@
             <div class="px-6 py-4 space-y-4">
                 <a href="#projects" class="block text-gray-300 hover:text-white transition-colors">Projects</a>
                 <a href="#skills" class="block text-gray-300 hover:text-white transition-colors">Skills</a>
+                <a href="#services" class="block text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="#blog" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
                 <a href="#experience" class="block text-gray-300 hover:text-white transition-colors">Experience</a>
                 <a href="#contact" class="block text-purple-400 font-medium">Contact Me</a>
             </div>
@@ -229,7 +230,7 @@
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
             <div class="orb orb-3"></div>
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%2２0.03%２２%3E%3Cpath%20d%3D%２M36%２034v-4h-2v4h-4v２h4v4h２v-4h4v-２h-4zm0-30V0h-２v4h-4v２h4v4h２V6h4V4h-4zM6%２ 34v-4H4v4H0v２h4v4h２v-4h4v-２H6zM6%２ 4V0H4v4H0v２h4v4h２V6h4V4H6z％３E%3C/g％３E%3C/g％３E%3C/svg％３E')] opacity-20"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-20"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
@@ -316,12 +317,9 @@
 
                                     <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                                     <span class="text-sm text-gray-300">Available for work</span>
-
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <!-- Experience Badge -->
                     <div class="absolute -top-4 -right-4 bg-[#13131f] border border-purple-500/30 rounded-2xl p-4 shadow-xl">
@@ -573,30 +571,126 @@
         </div>
       </a>
       <!-- Project 6 -->
+      <a href="#" target="_blank" rel="noopener">
+        <div class="reveal glass-card rounded-2xl overflow-hidden group cursor-pointer">
+          <div class="h-64 relative overflow-hidden">
+            <img
+              src="src/img/Copu youtubw.png"
+              alt="Andrei Nyl Portfolio Website"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="px-3 py-1 bg-blue-600/20 border border-blue-500/30 rounded-full text-xs text-blue-300">
+                    Copy Youtube
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">
+                The copy of youtube
+            </h3>
+            <p class="text-gray-400 text-sm mb-4">
+                The copy of youtube is a simple the first portfolio website that I made that is a copy of youtube, it is a simple website that demonstrates my skills in HTML, CSS, and JavaScript, and it is a fun project that allowed me to practice my web development skills while creating a familiar and interactive user interface.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">HTML</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">CSS</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- Project 7 -->
+      <a href="#" target="_blank" rel="noopener">
+        <div class="reveal glass-card rounded-2xl overflow-hidden group cursor-pointer">
+          <div class="h-64 relative overflow-hidden">
+            <img
+              src="src/img/First try code.png"
+              alt="Andrei Nyl Portfolio Website"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="px-3 py-1 bg-blue-600/20 border border-blue-500/30 rounded-full text-xs text-blue-300">
+                    First Try Code
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">
+                The first Project Code
+            </h3>
+            <p class="text-gray-400 text-sm mb-4">
+              My very first attempt at coding a simple web application, showcasing my initial skills in HTML, CSS, and JavaScript.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Html</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Css</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- Project 8 -->
+      <a href="#" target="_blank" rel="noopener">
+        <div class="reveal glass-card rounded-2xl overflow-hidden group cursor-pointer">
+          <div class="h-64 relative overflow-hidden">
+            <img
+              src="src/img/second pi=ortfolio.png"
+              alt="Andrei Nyl Portfolio Website"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="px-3 py-1 bg-blue-600/20 border border-blue-500/30 rounded-full text-xs text-blue-300">
+                    Second Portfolio
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">
+              The second Portfolio
+            </h3>
+            <p class="text-gray-400 text-sm mb-4">
+              A simple yet elegant portfolio website showcasing my skills and projects.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Html</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Css</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">HTML AND CSS</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 9 -->
       <a href="/src/Animation website/html/css/index.html" target="_blank" rel="noopener">
         <div class="reveal glass-card rounded-2xl overflow-hidden group cursor-pointer">
-                    <div class="h-64 relative overflow-hidden">
+          <div class="h-64 relative overflow-hidden">
             <img
               src="src/img/Screenshot 2026-03-12 164933.png"
               alt="Andrei Nyl Portfolio Website"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-          <div class="h-64 relative overflow-hidden bg-gradient-to-br from-emerald-900/50 to-teal-900/50 flex items-center justify-center">
-            <span class="text-emerald-300 text-lg font-semibold">
-              PixelHub
-            </span>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="px-3 py-1 bg-emerald-600/20 border border-emerald-500/30 rounded-full text-xs text-emerald-300">
+                Animation Website
+              </span>
+            </div>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">
-              Next Web App
+              Animation Website
             </h3>
             <p class="text-gray-400 text-sm mb-4">
-              Another upcoming project that will showcase full-stack development skills.
+              A creative animation-focused website showcasing CSS and JavaScript animation techniques.
             </p>
             <div class="flex gap-2 flex-wrap">
-              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Node.js</span>
-              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Express</span>
-              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">MongoDB</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">HTML</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">CSS</span>
+              <span class="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">JavaScript</span>
             </div>
           </div>
         </div>
@@ -609,22 +703,75 @@
     <section id="skills" class="py-32 relative bg-darker/50">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Behind the Code</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                        I am an aspiring Full Stack Developer currently studying web and software development. 
-                        I enjoy creating modern websites, exploring new technologies, and building small projects 
-                        that help me practice real-world skills. I’m just starting my journey on OnlineJobs.ph, 
-                        eager to take on opportunities that will let me learn, improve, and contribute to meaningful projects.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-purple-300 cursor-default">HTML</span>
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-purple-300 cursor-default">CSS</span>
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-purple-300 cursor-default">JavaScript</span>
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-pink-300 cursor-default">Node.js</span>
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-pink-300 cursor-default">Git</span>
-                        <span class="skill-tag px-6 py-3 rounded-full text-sm font-medium text-purple-300 cursor-default">Responsive Design</span>
+            <div class="reveal mb-16 text-center">
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Technical Skills</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mx-auto mb-6"></div>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">From frontend to backend, design to AI — a growing toolkit built through real projects and continuous learning.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="space-y-6">
+                    <div class="reveal glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#a855f7,#c084fc)">
+                                <i data-lucide="code-2" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Frontend</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">HTML5</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">CSS3</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">JavaScript</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">React.js</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Tailwind CSS</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">TypeScript</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Responsive Design</span>
+                        </div>
+                    </div>
+                    <div class="reveal glass-card p-6 rounded-2xl" style="transition-delay:200ms">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#f97316,#ec4899)">
+                                <i data-lucide="brush" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Design Tools</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Figma</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Adobe XD</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">UI/UX Design</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Wireframing</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Prototyping</span>
+                        </div>
+                    </div>
+                    <div class="reveal glass-card p-6 rounded-2xl" style="transition-delay:300ms">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">
+                                <i data-lucide="brain-circuit" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">AI Tools</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">ChatGPT</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">GitHub Copilot</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Claude AI</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Midjourney</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">AI-Assisted Dev</span>
+                        </div>
+                    </div>
+                    <div class="reveal glass-card p-6 rounded-2xl" style="transition-delay:400ms">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#6366f1,#818cf8)">
+                                <i data-lucide="terminal" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Tools & DevOps</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Git</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">GitHub</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">VS Code</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Postman</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">Vercel</span>
+                            <span class="skill-tag px-4 py-2 rounded-full text-sm text-gray-300">npm</span>
+                        </div>
                     </div>
                 </div>
                 <div class="reveal grid grid-cols-2 gap-4">
@@ -648,7 +795,226 @@
                         <h4 class="font-semibold mb-1">UI/UX Design</h4>
                         <p class="text-xs text-gray-500">User-centered design</p>
                     </div>
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:border-purple-500/30 transition-all">
+                        <i data-lucide="brain-circuit" class="w-8 h-8 text-cyan-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-semibold mb-1">AI-Assisted</h4>
+                        <p class="text-xs text-gray-500">Smart development</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:border-purple-500/30 transition-all mt-8">
+                        <i data-lucide="globe" class="w-8 h-8 text-indigo-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-semibold mb-1">Full Stack</h4>
+                        <p class="text-xs text-gray-500">End-to-end solutions</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 relative" style="background-color:#0a0a0f;overflow:hidden;">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none" style="width:600px;height:300px;background:rgba(168,85,247,0.08);border-radius:50%;filter:blur(120px);"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal mb-16 text-center">
+                <span class="text-purple-400 font-medium tracking-widest uppercase text-sm mb-4 block">What I Offer</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Services</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mx-auto mb-6"></div>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">From design to deployment — here's how I can help bring your project to life.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:0ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#a855f7,#c084fc)">
+                        <i data-lucide="globe" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Web Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Building responsive, modern websites from landing pages to full web applications using HTML, CSS, JavaScript, and React.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">HTML/CSS</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">JavaScript</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">React</span>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:100ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#ec4899,#f472b6)">
+                        <i data-lucide="server" class="w-7 h-7 text-white"></i>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:200ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#f97316,#ec4899)">
+                        <i data-lucide="palette" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">UI/UX Design</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Designing clean, intuitive user interfaces with Figma and Adobe XD — focused on aesthetics, usability, and user experience.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Figma</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Adobe XD</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Prototyping</span>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:300ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#6366f1,#3b82f6)">
+                        <i data-lucide="smartphone" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Responsive Design</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Ensuring every website looks and performs great on all screen sizes — from desktop to tablet to mobile.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Mobile-first</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Tailwind CSS</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Flexbox/Grid</span>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:400ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">
+                        <i data-lucide="brain-circuit" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">AI-Assisted Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Leveraging modern AI tools like GitHub Copilot and Claude to speed up development, enhance code quality, and solve complex problems.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">GitHub Copilot</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Claude AI</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">ChatGPT</span>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300" style="transition-delay:500ms">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#10b981,#14b8a6)">
+                        <i data-lucide="wrench" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Website Maintenance</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Updating, debugging, and improving existing websites — fixing issues, optimizing performance, and adding new features.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Bug Fixes</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Optimization</span>
+                        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full">Updates</span>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal mt-16 text-center">
+                <p class="text-gray-400 mb-6">Need something custom? Let's talk about your project.</p>
+                <a href="#contact" class="inline-flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover:shadow-2xl hover:scale-105 transition-all">
+                    Get a Free Quote
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-32 relative" style="background:rgba(5,5,8,0.5);overflow:hidden;">
+        <div class="absolute bottom-0 right-0 pointer-events-none" style="width:500px;height:400px;background:rgba(236,72,153,0.08);border-radius:50%;filter:blur(120px);"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal mb-16 flex items-end justify-between flex-wrap gap-4">
+                <div>
+                    <span class="text-purple-400 font-medium tracking-widest uppercase text-sm mb-4 block">My Thoughts</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Blog</h2>
+                    <div class="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
+                    <p class="text-gray-400 text-lg mt-6 max-w-2xl">Sharing what I learn — tutorials, personal stories, and thoughts on web development and tech.</p>
+                </div>
+                <a href="#" class="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 transition-colors">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>View all posts<i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="#" class="group block reveal" style="transition-delay:0ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(168,85,247,0.6),rgba(236,72,153,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-purple-500/20 bg-purple-600/10 text-purple-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>Personal</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>4 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">How I Built My First Portfolio Website</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">A look back at my very first attempt at building a personal portfolio — the mistakes I made, what I learned, and how far I've come since.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">March 2026</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="group block reveal" style="transition-delay:80ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(59,130,246,0.6),rgba(99,102,241,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-blue-500/20 bg-blue-600/10 text-blue-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>Tutorial</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>5 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">Getting Started with Tailwind CSS</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Tailwind completely changed how I write CSS. Here's a beginner-friendly breakdown of utility-first styling and why it's worth learning.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">February 2026</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="group block reveal" style="transition-delay:160ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(6,182,212,0.6),rgba(59,130,246,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-600/10 text-cyan-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>AI</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>6 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">Using AI Tools to Speed Up Development</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">From GitHub Copilot to Claude AI, here's how I've been using AI assistants to write better code faster — and where they still fall short.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">January 2026</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="group block reveal" style="transition-delay:240ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(16,185,129,0.6),rgba(20,184,166,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-green-500/20 bg-green-600/10 text-green-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>Backend</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>7 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">My Journey Learning Node.js as a Frontend Dev</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Switching from purely frontend work to building backend APIs with Node.js and Express was a turning point. Here's what surprised me most.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">December 2025</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="group block reveal" style="transition-delay:320ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(249,115,22,0.6),rgba(236,72,153,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-orange-500/20 bg-orange-600/10 text-orange-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>Design</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>4 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">Why I Started Learning Figma as a Developer</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Most developers skip design tools — but learning Figma made me a significantly better developer. Here's the case for developers learning design.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">November 2025</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="group block reveal" style="transition-delay:400ms">
+                    <div class="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="h-1 w-full" style="background:linear-gradient(to right,rgba(168,85,247,0.6),rgba(99,102,241,0.6))"></div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full border border-purple-500/20 bg-purple-600/10 text-purple-300 flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i>Personal</span>
+                                <span class="text-xs text-gray-500 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>8 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">Being a Hearing-Impaired Developer: My Story</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">A personal reflection on navigating the tech world as a hearing-impaired person — the challenges, the advantages, and the mindset that keeps me going.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">October 2025</span>
+                                <span class="text-xs text-gray-500 group-hover:text-purple-400 flex items-center gap-1 transition-colors">Read more <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -695,7 +1061,7 @@
                 <h2 class="text-5xl md:text-6xl font-display font-bold mb-6">Let's Work Together</h2>
                 <p class="text-gray-400 text-lg mb-12 max-w-xl mx-auto">Have a project in mind? Let's create something amazing together.</p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 flex-wrap">
-                    <a href="mailto:manliclicandrei58@gmail.com" class="group flex items-center gap-3 px-8 py-4 glass-card rounded-full hover:border-purple-500/50 transition-all">
+                    <a href="/cdn-cgi/l/email-protection#6d000c0301040e01040e0c03091f080458552d0a000c0401430e0200" class="group flex items-center gap-3 px-8 py-4 glass-card rounded-full hover:border-purple-500/50 transition-all">
                         <i data-lucide="mail" class="w-5 h-5 text-purple-400"></i>
                         <span class="text-gray-300 group-hover:text-white transition-colors">Email</span>
                     </a>
@@ -715,8 +1081,12 @@
                         <i data-lucide="message-circle" class="w-5 h-5 text-purple-400"></i>
                         <span class="text-gray-300 group-hover:text-white transition-colors">Discord</span>
                     </a>
+                    <a href="https://www.facebook.com/Nyloys" target="_blank" class="group flex items-center gap-3 px-8 py-4 glass-card rounded-full hover:border-purple-500/50 transition-all">
+                        <i data-lucide="facebook" class="w-5 h-5 text-purple-400"></i>
+                        <span class="text-gray-300 group-hover:text-white transition-colors">FaceBook</span>
+                    </a>
                 </div>
-                <a href="mailto:manliclicandrei58@gmail.com" class="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 transition-all">
+                <a href="/cdn-cgi/l/email-protection#432e222d2f2a202f2a20222d2731262a767b03242e222a2f6d202c2e" class="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 transition-all">
                     Start a Project
                     <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
@@ -740,7 +1110,7 @@
             </div>
         </div>
     </footer>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       // Initialize Lucide icons
         lucide.createIcons();
 
@@ -823,18 +1193,6 @@
                 orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
             });
         });
-        const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", () => {
-  reveals.forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight - 100) {
-      el.classList.add("opacity-100", "translate-y-0");
-    }
-  });
-});
     </script>
 </body>
 </html>

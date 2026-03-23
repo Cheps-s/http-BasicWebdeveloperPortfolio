@@ -28,7 +28,7 @@ export default function About() {
               <div className="absolute -inset-4 rounded-2xl opacity-20 group-hover:opacity-30 blur-sm transition duration-500"
                 style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }} />
               <div className="relative rounded-2xl overflow-hidden border border-purple-500/20">
-                <img src={profileImg} alt="Andrei Nyl Manliclic"
+                <img src="src/img/Nyl.jpg" alt="Andrei Nyl Manliclic"
                   className="w-full h-auto object-cover transition duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 via-transparent to-transparent" />
                 {/* Status badge */}

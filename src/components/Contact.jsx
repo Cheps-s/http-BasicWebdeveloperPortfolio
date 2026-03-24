@@ -12,16 +12,20 @@ const links = [
 ]
 
 export default function Contact() {
-  const [form,    setForm]    = useState({ name: '', email: '', message: '' })
-  const [sent,    setSent]    = useState(false)
+  // Fixed: Empty form state for user input (placeholders show your info instead)
+  const [form, setForm] = useState({ 
+    name: '', 
+    email: '', 
+    message: '' 
+  })
+  const [sent, setSent] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  // No backend — opens mailto with the message pre-filled
   const handleSubmit = (e) => {
     e.preventDefault()
     const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`)
-    const body    = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
     window.location.href = `mailto:manliclicandrei58@gmail.com?subject=${subject}&body=${body}`
     setSent(true)
     setForm({ name: '', email: '', message: '' })
@@ -60,7 +64,7 @@ export default function Contact() {
                   rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-                  className="glass-card flex items-center gap-3 p-3 hover:border-purple-500/50 transition-all group">
+                  className="flex items-center gap-3 p-3 rounded-xl hover:border-purple-500/50 transition-all group border border-white/10 bg-white/5 backdrop-blur-sm">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
                     style={{ background: 'rgba(168,85,247,0.12)' }}>
                     <l.icon className="w-4 h-4 text-purple-400" />
@@ -78,17 +82,21 @@ export default function Contact() {
           <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <form onSubmit={handleSubmit} className="space-y-5">
 
-              {[{ id:'name', type:'text',  label:'Your Name',  placeholder:'John Doe'          },
-                { id:'email',type:'email', label:'Your Email', placeholder:'john@example.com'  }
-              ].map(f => (
-                <div key={f.id}>
-                  <label htmlFor={f.id} className="block text-sm font-medium text-gray-400 mb-2">{f.label}</label>
-                  <input id={f.id} name={f.id} type={f.type} required
-                    value={form[f.id]} onChange={handleChange} placeholder={f.placeholder}
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
-                    style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
-                </div>
-              ))}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                <input id="name" name="name" type="text" required
+                  value={form.name} onChange={handleChange} placeholder="Andrei Nyl Manliclic"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+                  style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
+                <input id="email" name="email" type="email" required
+                  value={form.email} onChange={handleChange} placeholder="manliclicandrei58@gmail.com"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+                  style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
+              </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>

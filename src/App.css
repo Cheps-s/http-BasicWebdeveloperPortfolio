@@ -13,7 +13,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #f75563 0%, #ec4899 50%, #f75555 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -76,7 +76,7 @@
 .orb-1 {
   width: 400px;
   height: 400px;
-  background: #a855f7;
+  background: #8055f7;
   top: -100px;
   right: -100px;
   animation-delay: 0s;
@@ -85,7 +85,7 @@
 .orb-2 {
   width: 300px;
   height: 300px;
-  background: #ec4899;
+  background: #aa48ec;
   bottom: -50px;
   left: -50px;
   animation-delay: 2s;
@@ -127,10 +127,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a855f7;
+  background: #5565f7;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ec4899;
+  background: #4866ec;
 }

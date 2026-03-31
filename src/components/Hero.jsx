@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
+import Hero3D from './Hero3D'
 
 export default function Hero() {
   const go = (href) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
@@ -13,13 +14,13 @@ export default function Hero() {
         <div className="orb orb-3" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
         >
-          <p className="text-purple-400 font-medium mb-4 tracking-widest uppercase text-sm">
+          <p className="text-gray-400 font-medium mb-4 tracking-widest uppercase text-sm">
             Full Stack Developer
           </p>
 
@@ -36,9 +37,9 @@ export default function Hero() {
             focused on clean UI, performance, and user experience.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button onClick={() => go('#projects')}
-              className="group px-8 py-4 bg-white text-black rounded-full font-semibold hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2">
+              className="group px-8 py-4 bg-white text-black rounded-full font-semibold hover:shadow-2xl hover:shadow-gray-500/50 hover:scale-105 transition-all flex items-center justify-center gap-2">
               View Projects
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </button>
@@ -47,6 +48,15 @@ export default function Hero() {
               Get in Touch
             </button>
           </div>
+        </motion.div>
+        
+        <motion.div
+           initial={{ opacity: 0, scale: 0.8 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 1, ease: 'easeOut' }}
+           className="w-full flex justify-center"
+        >
+          <Hero3D />
         </motion.div>
       </div>
 

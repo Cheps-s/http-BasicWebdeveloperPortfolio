@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase } from 'lucide-react'
-
+import '.Footer.css'  
 const items = [
   {
     icon: GraduationCap,

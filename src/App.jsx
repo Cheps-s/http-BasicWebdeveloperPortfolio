@@ -18,6 +18,7 @@ import Blog from './components/Blog'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Test from './components/Test'
 
 function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
@@ -90,6 +91,7 @@ function App() {
         <Blog />
         <Experience />
         <Contact />
+        <Test />
       </main>
       
       <Footer />

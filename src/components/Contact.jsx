@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Github, Globe, Phone, MessageCircle, Facebook, Send, CheckCircle } from 'lucide-react'
-
+import './Contact.css'
 const links = [
   { icon: Mail,          label: 'Email',        value: 'manliclicandrei58@gmail.com',    href: 'mailto:manliclicandrei58@gmail.com' },
   { icon: Github,        label: 'GitHub',        value: 'github.com/Cheps-s',             href: 'https://github.com/Cheps-s' },

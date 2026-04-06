@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { MapPin, GraduationCap, Code, Sparkles } from 'lucide-react'
 import profileImg from '../img/Profile.png'
+import './About.css'
+
 
 const info = [
   { icon: MapPin,         label: 'Location',  value: 'Philippines',               color: 'text-purple-400' },

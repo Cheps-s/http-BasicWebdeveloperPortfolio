@@ -1,7 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Code2, Zap, Smartphone, Palette, Terminal, Brush, BrainCircuit, Globe } from 'lucide-react'
-
+import { i } from 'framer-motion/client'
+import './Skills.css'
 const skillCategories = [
   { 
     title:'Frontend',

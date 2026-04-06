@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
+import { i } from 'framer-motion/client'
+import './Navbar.css'
 const links = [
   { name: 'About',      href: '#about'      },
   { name: 'Projects',   href: '#projects'   },

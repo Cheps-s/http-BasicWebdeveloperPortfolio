@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Code2 } from 'lucide-react'
-
+import './Project.css'  
 const projects = [
   { title:'Chepsbook',          desc:'A social-style website with modern layout and responsive interface.',                              image:'/src/img/Screenshot 2026-03-12 145728.png', tags:['HTML','CSS','JavaScript'], category:'Social Website', badgeStyle:{background:'rgba(168,85,247,0.2)',border:'1px solid rgba(168,85,247,0.3)',color:'#d8b4fe'}, link:'https://cheps-s.github.io/Chepsbook.com/#home' },
   { title:'Andrei Nyl Portfolio',desc:'Personal developer portfolio showcasing projects, skills, and UI animations.',                    image:'/src/img/Screenshot 2026-03-12 150045.png', tags:['HTML','CSS','JavaScript'], category:'Portfolio',     badgeStyle:{background:'rgba(59,130,246,0.2)', border:'1px solid rgba(59,130,246,0.3)', color:'#93c5fd'},    link:'https://cheps-s.github.io/Andreinyl.com' },

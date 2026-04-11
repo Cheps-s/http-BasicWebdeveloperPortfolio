@@ -4,6 +4,24 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
+/* Light mode adjustments for Footer */
+body.light-mode footer {
+  background-color: #f0f0f0 !important;
+  border-top-color: rgba(0,0,0,0.06) !important;
+}
+
+body.light-mode .footer-brand-desc {
+  color: #6b7280 !important;
+}
+
+body.light-mode .footer-nav-link {
+  color: #6b7280 !important;
+}
+
+body.light-mode footer p {
+  color: #374151 !important;
+}
+
 .footer-top-line {
   position: absolute;
   top: 0;

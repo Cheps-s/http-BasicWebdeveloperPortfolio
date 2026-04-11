@@ -1,172 +1,292 @@
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-canvas { display: block; }
-#c { background: #0a0a0f; width: 100%; height: 520px; }
-</style>
-<canvas id="c"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-const canvas = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.2;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrei Nyl - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0a0a0f);
-scene.fog = new THREE.FogExp2(0x0a0a0f, 0.035);
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Smooth transition for background and text colors */
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
 
-const W = canvas.clientWidth, H = canvas.clientHeight;
-const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 100);
-camera.position.set(0, 2, 10);
-camera.lookAt(0, 0, 0);
+    /* 1. Canvas acts as a fixed background */
+    #c {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1; /* Pushes the 3D scene behind the text */
+      display: block;
+    }
 
-const ambientLight = new THREE.AmbientLight(0x1a0a2e, 2);
-scene.add(ambientLight);
+    /* 2. UI Overlay Styling */
+    .ui-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
 
-const light1 = new THREE.PointLight(0xa855f7, 80, 30);
-light1.position.set(-5, 5, 5);
-light1.castShadow = true;
-scene.add(light1);
+    header {
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 60px;
+    }
 
-const light2 = new THREE.PointLight(0xec4899, 60, 25);
-light2.position.set(5, -3, 4);
-light2.castShadow = true;
-scene.add(light2);
+    /* Theme Toggle Button */
+    #themeToggleBtn {
+      padding: 8px 24px;
+      border-radius: 20px;
+      border: none;
+      background: #1f2023;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-const light3 = new THREE.PointLight(0x38bdf8, 40, 20);
-light3.position.set(0, -5, 3);
-scene.add(light3);
+    h1 {
+      font-size: 5rem;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      letter-spacing: -2px;
+    }
 
-const light4 = new THREE.DirectionalLight(0xffffff, 0.5);
-light4.position.set(0, 10, 5);
-scene.add(light4);
+    /* 3. The Paragraph Styling */
+    .hero-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 500px;
+      transition: color 0.3s ease;
+    }
 
-function makeCrystal(color, emissive, scale, pos, rotSpeed) {
-  const geo = new THREE.OctahedronGeometry(1, 0);
-  const mat = new THREE.MeshPhysicalMaterial({
-    color,
-    emissive,
-    emissiveIntensity: 0.3,
-    metalness: 0.1,
-    roughness: 0.05,
-    transmission: 0.8,
-    thickness: 1.5,
-    reflectivity: 1,
-    transparent: true,
-    opacity: 0.88,
-    side: THREE.DoubleSide,
-  });
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.scale.set(scale.x, scale.y, scale.z);
-  mesh.position.set(...pos);
-  mesh.castShadow = true;
-  mesh.userData = { rotSpeed, phase: Math.random() * Math.PI * 2, baseY: pos[1] };
-  scene.add(mesh);
+    /* =========================================
+       LIGHT MODE (Default State)
+       ========================================= */
+    h1 { color: #000000; }
+    .hero-text { color: #555555; /* Dark gray for light mode */ }
 
-  const edgesGeo = new THREE.EdgesGeometry(geo);
-  const edgesMat = new THREE.LineBasicMaterial({ color: emissive, transparent: true, opacity: 0.6 });
-  const edges = new THREE.LineSegments(edgesGeo, edgesMat);
-  mesh.add(edges);
 
-  return mesh;
-}
+    /* =========================================
+       DARK MODE STATE
+       ========================================= */
+    body.dark-mode h1 { color: #ffffff; }
+    body.dark-mode .hero-text { color: #ffffff; /* White text for dark mode */ }
+    body.dark-mode #themeToggleBtn {
+      background: #ffffff;
+      color: #000000;
+    }
 
-const crystals = [
-  makeCrystal(0xc084fc, 0xa855f7, { x: 1.4, y: 2.2, z: 1.4 }, [0, 0, 0],    { x: 0.005, y: 0.008, z: 0.003 }),
-  makeCrystal(0xf9a8d4, 0xec4899, { x: 0.8, y: 1.4, z: 0.8 }, [-3.5, 1, -2], { x: 0.007, y: 0.005, z: 0.006 }),
-  makeCrystal(0x67e8f9, 0x38bdf8, { x: 0.6, y: 1.1, z: 0.6 }, [3.2, -0.5, -1],{ x: 0.004, y: 0.009, z: 0.005 }),
-  makeCrystal(0xc4b5fd, 0x7c3aed, { x: 0.5, y: 0.9, z: 0.5 }, [-1.8, -1.8, 1],{ x: 0.009, y: 0.004, z: 0.007 }),
-  makeCrystal(0xfda4af, 0xf43f5e, { x: 0.4, y: 0.75, z: 0.4 }, [2, 2, 0.5],  { x: 0.006, y: 0.007, z: 0.004 }),
-  makeCrystal(0xa5f3fc, 0x0ea5e9, { x: 0.35, y: 0.65, z: 0.35 }, [0.5, -2.5, 1.5],{ x: 0.008, y: 0.006, z: 0.009 }),
-  makeCrystal(0xd8b4fe, 0x9333ea, { x: 0.3, y: 0.55, z: 0.3 }, [-2.5, 2.2, 0.5],{ x: 0.01, y: 0.005, z: 0.006 }),
-];
+  </style>
+</head>
+<body>
 
-const particleCount = 200;
-const pGeo = new THREE.BufferGeometry();
-const pPos = new Float32Array(particleCount * 3);
-const pColors = new Float32Array(particleCount * 3);
-const palette = [
-  new THREE.Color(0xa855f7),
-  new THREE.Color(0xec4899),
-  new THREE.Color(0x38bdf8),
-  new THREE.Color(0x7c3aed),
-];
-for (let i = 0; i < particleCount; i++) {
-  pPos[i * 3]     = (Math.random() - 0.5) * 18;
-  pPos[i * 3 + 1] = (Math.random() - 0.5) * 14;
-  pPos[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
-  const c = palette[Math.floor(Math.random() * palette.length)];
-  pColors[i * 3]     = c.r;
-  pColors[i * 3 + 1] = c.g;
-  pColors[i * 3 + 2] = c.b;
-}
-pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-pGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
-const pMat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.7 });
-const particles = new THREE.Points(pGeo, pMat);
-scene.add(particles);
+  <canvas id="c"></canvas>
 
-const ringGeo = new THREE.TorusGeometry(4.5, 0.015, 8, 100);
-const ringMat = new THREE.MeshBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.25 });
-const ring1 = new THREE.Mesh(ringGeo, ringMat);
-ring1.rotation.x = Math.PI / 2.5;
-scene.add(ring1);
+  <div class="ui-container">
+    <header>
+      <button id="themeToggleBtn">Dark Mode</button>
+    </header>
 
-const ring2Geo = new THREE.TorusGeometry(3.2, 0.01, 8, 80);
-const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.18 });
-const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
-ring2.rotation.x = Math.PI / 3;
-ring2.rotation.z = Math.PI / 6;
-scene.add(ring2);
+    <main>
+      <h1>Andrei Nyl<br>Front-End<br>Developer</h1>
+      <p class="hero-text">
+        I'm currently an IT student, front-end developer, and passionate about creating beautiful web experiences. My areas of specialty are React and modern-day JavaScript, with an emphasis on building responsive and user-friendly interfaces. I am 19 years old, and I started freelancing at age 19 by creating websites through the internet with creativity, design, and clean code.
+      </p>
+    </main>
+  </div>
 
-let mouse = { x: 0, y: 0 };
-canvas.addEventListener('mousemove', e => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-  mouse.y = -((e.clientY - rect.top) / rect.height - 0.5) * 2;
-});
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // --- THREE.JS SETUP ---
+    const canvas = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
 
-let t = 0;
-function animate() {
-  requestAnimationFrame(animate);
-  t += 0.01;
+    const scene = new THREE.Scene();
+    
+    // Set default light mode background for Three.js
+    const lightBgColor = 0xffffff; // White background for light mode
+    const darkBgColor = 0x0a0a0f;  // Dark background for dark mode
+    scene.background = new THREE.Color(lightBgColor);
+    scene.fog = new THREE.FogExp2(lightBgColor, 0.035);
 
-  crystals.forEach((c, i) => {
-    c.rotation.x += c.userData.rotSpeed.x;
-    c.rotation.y += c.userData.rotSpeed.y;
-    c.rotation.z += c.userData.rotSpeed.z;
-    c.position.y = c.userData.baseY + Math.sin(t + c.userData.phase) * 0.35;
-    c.material.emissiveIntensity = 0.2 + Math.sin(t * 1.5 + c.userData.phase) * 0.15;
-  });
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 2, 10);
+    camera.lookAt(0, 0, 0);
 
-  particles.rotation.y += 0.0008;
-  particles.rotation.x += 0.0003;
+    const ambientLight = new THREE.AmbientLight(0x1a0a2e, 2);
+    scene.add(ambientLight);
 
-  ring1.rotation.z += 0.003;
-  ring2.rotation.y += 0.004;
+    const light1 = new THREE.PointLight(0xa855f7, 80, 30);
+    light1.position.set(-5, 5, 5);
+    light1.castShadow = true;
+    scene.add(light1);
 
-  light1.position.x = Math.sin(t * 0.7) * 6;
-  light1.position.z = Math.cos(t * 0.5) * 5;
-  light2.position.x = Math.cos(t * 0.6) * 5;
-  light2.position.z = Math.sin(t * 0.8) * 4;
+    const light2 = new THREE.PointLight(0xec4899, 60, 25);
+    light2.position.set(5, -3, 4);
+    light2.castShadow = true;
+    scene.add(light2);
 
-  camera.position.x += (mouse.x * 1.5 - camera.position.x) * 0.03;
-  camera.position.y += (mouse.y * 1.0 + 2 - camera.position.y) * 0.03;
-  camera.lookAt(0, 0, 0);
+    const light3 = new THREE.PointLight(0x38bdf8, 40, 20);
+    light3.position.set(0, -5, 3);
+    scene.add(light3);
 
-  renderer.render(scene, camera);
-}
-animate();
+    const light4 = new THREE.DirectionalLight(0xffffff, 0.5);
+    light4.position.set(0, 10, 5);
+    scene.add(light4);
 
-window.addEventListener('resize', () => {
-  const w = canvas.clientWidth, h = canvas.clientHeight;
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-  renderer.setSize(w, h);
-});
-</script>
+    function makeCrystal(color, emissive, scale, pos, rotSpeed) {
+      const geo = new THREE.OctahedronGeometry(1, 0);
+      const mat = new THREE.MeshPhysicalMaterial({
+        color,
+        emissive,
+        emissiveIntensity: 0.3,
+        metalness: 0.1,
+        roughness: 0.05,
+        transmission: 0.8,
+        thickness: 1.5,
+        reflectivity: 1,
+        transparent: true,
+        opacity: 0.88,
+        side: THREE.DoubleSide,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.scale.set(scale.x, scale.y, scale.z);
+      mesh.position.set(...pos);
+      mesh.castShadow = true;
+      mesh.userData = { rotSpeed, phase: Math.random() * Math.PI * 2, baseY: pos[1] };
+      scene.add(mesh);
+
+      const edgesGeo = new THREE.EdgesGeometry(geo);
+      const edgesMat = new THREE.LineBasicMaterial({ color: emissive, transparent: true, opacity: 0.6 });
+      const edges = new THREE.LineSegments(edgesGeo, edgesMat);
+      mesh.add(edges);
+
+      return mesh;
+    }
+
+    const crystals = [
+      makeCrystal(0xc084fc, 0xa855f7, { x: 1.4, y: 2.2, z: 1.4 }, [4, 0, -2],    { x: 0.005, y: 0.008, z: 0.003 }), // Shifted right so it doesn't block text
+      makeCrystal(0xf9a8d4, 0xec4899, { x: 0.8, y: 1.4, z: 0.8 }, [1.5, 1, -4], { x: 0.007, y: 0.005, z: 0.006 }),
+      makeCrystal(0x67e8f9, 0x38bdf8, { x: 0.6, y: 1.1, z: 0.6 }, [6.2, -0.5, -1],{ x: 0.004, y: 0.009, z: 0.005 }),
+      makeCrystal(0xc4b5fd, 0x7c3aed, { x: 0.5, y: 0.9, z: 0.5 }, [2.2, -1.8, 1],{ x: 0.009, y: 0.004, z: 0.007 }),
+    ];
+
+    const particleCount = 200;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(particleCount * 3);
+    const pColors = new Float32Array(particleCount * 3);
+    const palette = [
+      new THREE.Color(0xa855f7),
+      new THREE.Color(0xec4899),
+      new THREE.Color(0x38bdf8),
+      new THREE.Color(0x7c3aed),
+    ];
+    for (let i = 0; i < particleCount; i++) {
+      pPos[i * 3]     = (Math.random() - 0.5) * 18;
+      pPos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+      pPos[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
+      const c = palette[Math.floor(Math.random() * palette.length)];
+      pColors[i * 3]     = c.r;
+      pColors[i * 3 + 1] = c.g;
+      pColors[i * 3 + 2] = c.b;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    pGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
+    const pMat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.7 });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    const ringGeo = new THREE.TorusGeometry(4.5, 0.015, 8, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.25 });
+    const ring1 = new THREE.Mesh(ringGeo, ringMat);
+    ring1.position.set(3, 0, -2);
+    ring1.rotation.x = Math.PI / 2.5;
+    scene.add(ring1);
+
+    let mouse = { x: 0, y: 0 };
+    window.addEventListener('mousemove', e => {
+      mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouse.y = -(e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.01;
+
+      crystals.forEach((c, i) => {
+        c.rotation.x += c.userData.rotSpeed.x;
+        c.rotation.y += c.userData.rotSpeed.y;
+        c.rotation.z += c.userData.rotSpeed.z;
+        c.position.y = c.userData.baseY + Math.sin(t + c.userData.phase) * 0.35;
+        c.material.emissiveIntensity = 0.2 + Math.sin(t * 1.5 + c.userData.phase) * 0.15;
+      });
+
+      particles.rotation.y += 0.0008;
+      particles.rotation.x += 0.0003;
+
+      ring1.rotation.z += 0.003;
+
+      light1.position.x = Math.sin(t * 0.7) * 6;
+      light1.position.z = Math.cos(t * 0.5) * 5;
+      light2.position.x = Math.cos(t * 0.6) * 5;
+      light2.position.z = Math.sin(t * 0.8) * 4;
+
+      camera.position.x += (mouse.x * 1.5 - camera.position.x) * 0.03;
+      camera.position.y += (mouse.y * 1.0 + 2 - camera.position.y) * 0.03;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // --- UI INTERACTION LOGIC (THE FIX) ---
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+    themeToggleBtn.addEventListener('click', () => {
+      // Toggle the CSS class on the body
+      document.body.classList.toggle('dark-mode');
+      
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      
+      // Update button text
+      themeToggleBtn.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+      
+      // Update the 3D Canvas Background so the text remains readable
+      if (isDarkMode) {
+        scene.background = new THREE.Color(darkBgColor);
+        scene.fog = new THREE.FogExp2(darkBgColor, 0.035);
+      } else {
+        scene.background = new THREE.Color(lightBgColor);
+        scene.fog = new THREE.FogExp2(lightBgColor, 0.035);
+      }
+    });
+  </script>
+</body>
+</html>

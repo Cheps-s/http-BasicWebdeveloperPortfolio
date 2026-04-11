@@ -4,6 +4,27 @@
   background-color: #050508;
 }
 
+/* Light mode adjustments for Contact section */
+body.light-mode #contact {
+  background-color: #f8f8f8 !important;
+}
+
+body.light-mode #contact p {
+  color: #374151 !important;
+}
+
+body.light-mode .contact-subtitle {
+  color: #6b7280 !important;
+}
+
+body.light-mode .contact-links-desc {
+  color: #6b7280 !important;
+}
+
+body.light-mode .contact-link-label {
+  color: #6b7280 !important;
+}
+
 .contact-bg {
   position: absolute;
   inset: 0;

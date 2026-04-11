@@ -5,6 +5,15 @@
   background-color: #0a0a0f;
 }
 
+/* Light mode adjustments for About section */
+body.light-mode #about {
+  background-color: #f8f8f8 !important;
+}
+
+body.light-mode #about p {
+  color: #374151 !important;
+}
+
 .about-glow-right {
   position: absolute;
   top: 0;

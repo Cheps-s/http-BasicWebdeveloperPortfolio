@@ -27,7 +27,7 @@ export default function Experience() {
 
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Web Development</h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">My Experience</h2>
           <div className="h-1 w-20 rounded-full mx-auto mb-6"
             style={{ background: 'linear-gradient(to right,#a855f7,#ec4899)' }} />
           <p className="text-gray-400 max-w-2xl mx-auto">

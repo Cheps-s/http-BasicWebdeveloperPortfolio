@@ -108,6 +108,14 @@
   color: #e2e8f0;
 }
 
+body.light-mode .code-lines {
+  color: #374151 !important;
+}
+
+body.light-mode .code-line {
+  color: #374151 !important;
+}
+
 .code-line {
   opacity: 0;
   animation: type-in 0.5s ease forwards;

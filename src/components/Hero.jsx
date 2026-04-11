@@ -26,7 +26,7 @@ export default function Hero({ scrollToSection }) {
             </span>
 
             <h1 className="hero-title">
-              <span className="line line-1">Andrei Nyl Manliclic</span>
+              <span className="line line-1">NylTech</span>
               <span className="line line-2">Front-End</span>
               <span className="line line-3">Developer</span>
             </h1>
@@ -63,7 +63,7 @@ export default function Hero({ scrollToSection }) {
                 <span className="stat-label">Projects</span>
               </div>
               <div className="stat">
-                <div className="stat-num" data-target="0">0</div>
+                <div className="stat-num" data-target="1">0</div>
                 <span className="stat-plus">+</span>
                 <span className="stat-label">Clients</span>
               </div>

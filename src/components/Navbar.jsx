@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { i } from 'framer-motion/client'
 import './Navbar.css'
 const links = [
   { name: 'About',      href: '#about'      },
   { name: 'Projects',   href: '#projects'   },
   { name: 'Skills',     href: '#skills'     },
-  { name: 'Services',   href: '#services'   },
-  { name: 'Blog',       href: '#blog'       },
   { name: 'Experience', href: '#experience' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ scrollToSection, theme, toggleTheme }) {
   const [open,     setOpen]     = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -40,10 +37,14 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             {links.map(l => (
               <button key={l.name} onClick={() => go(l.href)}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium">
+                className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors text-sm font-medium">
                 {l.name}
               </button>
             ))}
+            <button onClick={toggleTheme}
+              className="p-2 rounded-full bg-gray-200 dark:bg-[#1a1a1f] transition-colors">
+              {theme === 'dark' ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-600" />}
+            </button>
             <button onClick={() => go('#contact')}
               className="px-6 py-2 rounded-full text-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105"
               style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}>
@@ -52,7 +53,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
+          <button className="md:hidden text-black dark:text-white" onClick={() => setOpen(!open)}>
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -62,14 +63,19 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/5" style={{ background: '#050508' }}>
+            className="md:hidden border-t border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-[#050508]">
             <div className="px-6 py-4 flex flex-col gap-4">
               {links.map(l => (
                 <button key={l.name} onClick={() => go(l.href)}
-                  className="text-left text-gray-300 hover:text-white transition-colors py-1">
+                  className="text-left text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors py-1">
                   {l.name}
                 </button>
               ))}
+              <button onClick={toggleTheme}
+                className="flex items-center gap-2 text-left py-1">
+                {theme === 'dark' ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-600" />}
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </button>
               <button onClick={() => go('#contact')} className="text-left text-purple-400 font-semibold py-1">
                 Hire Me
               </button>

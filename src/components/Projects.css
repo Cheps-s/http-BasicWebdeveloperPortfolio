@@ -4,6 +4,24 @@
   background-color: #0a0a0f;
 }
 
+/* Light mode adjustments for Projects section */
+body.light-mode #projects {
+  background-color: #f8f8f8 !important;
+}
+
+body.light-mode #projects p {
+  color: #374151 !important;
+}
+
+body.light-mode .filter-btn {
+  color: #6b7280 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .filter-btn:hover {
+  color: #1a202c !important;
+}
+
 .projects-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-family: 'Space Grotesk', sans-serif;

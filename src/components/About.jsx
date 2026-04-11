@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, GraduationCap, Code, Sparkles } from 'lucide-react'
+import { MapPin, GraduationCap, Code, Sparkles, Users } from 'lucide-react'
 import profileImg from '../img/Profile.png'
 import './About.css'
 
@@ -11,7 +11,11 @@ const info = [
   { icon: Sparkles,       label: 'Status',    value: 'Available for work',         color: 'text-green-400'  },
 ]
 
-export default function About() {
+export default function About({ visitorCount = 0 }) {
+  const dynamicInfo = [
+    ...info,
+    { icon: Users, label: 'Visitors', value: visitorCount.toString(), color: 'text-blue-400' },
+  ]
   return (
     <section id="about" className="relative py-32 overflow-hidden" style={{ backgroundColor: '#0a0a0f' }}>
       {/* Glows */}
@@ -45,7 +49,7 @@ export default function About() {
               {/* Years badge */}
               <div className="absolute -top-4 -right-4 rounded-2xl p-4 text-center shadow-xl"
                 style={{ background: '#13131f', border: '1px solid rgba(168,85,247,0.3)' }}>
-                <div className="text-2xl font-bold text-purple-400">2+</div>
+                <div className="text-2xl font-bold text-purple-400">3+</div>
                 <div className="text-xs text-gray-400">Years Exp.</div>
               </div>
             </div>
@@ -56,8 +60,8 @@ export default function About() {
             viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <span className="text-purple-400 font-medium tracking-widest uppercase text-sm mb-6 block">About Me</span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-white leading-tight">
-              Full Stack Developer &<br />
-              <span className="gradient-text">Coding Enthusiast</span>
+              Frontend Developer &<br />
+              <span className="gradient-text">Vibe Coding</span>
             </h2>
 
             <div className="space-y-4 text-gray-400 leading-relaxed mb-8">
@@ -72,7 +76,7 @@ export default function About() {
 
             {/* Info grid */}
             <div className="grid grid-cols-2 gap-3 mb-8">
-              {info.map((item, i) => (
+              {dynamicInfo.map((item, i) => (
                 <motion.div key={item.label}
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: i * 0.1 }}

@@ -4,6 +4,19 @@
   background: rgba(5, 5, 8, 0.5);
 }
 
+/* Light mode adjustments for Skills section */
+body.light-mode #skills {
+  background: rgba(248, 248, 248, 1) !important;
+}
+
+body.light-mode #skills p {
+  color: #374151 !important;
+}
+
+body.light-mode .skills-subtitle {
+  color: #6b7280 !important;
+}
+
 .skills-bg-gradient {
   position: absolute;
   inset: 0;

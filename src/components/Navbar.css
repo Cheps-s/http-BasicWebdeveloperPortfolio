@@ -5,6 +5,11 @@
   transition: all 0.3s ease;
 }
 
+body.light-mode .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
 .navbar.scrolled {
   background: rgba(10, 10, 15, 0.85);
   backdrop-filter: blur(12px);
@@ -60,6 +65,10 @@
   transition: color 0.2s ease;
 }
 
+body.light-mode .navbar-link {
+  color: #6b7280 !important;
+}
+
 .navbar-link:hover {
   color: #ffffff;
 }
@@ -101,6 +110,11 @@
   overflow: hidden;
 }
 
+body.light-mode .navbar-mobile {
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+  background: #f8f8f8 !important;
+}
+
 @media (min-width: 768px) {
   .navbar-mobile {
     display: none;
@@ -123,6 +137,10 @@
   padding: 0.25rem 0;
   font-size: 1rem;
   transition: color 0.2s ease;
+}
+
+body.light-mode .navbar-mobile-link {
+  color: #6b7280 !important;
 }
 
 .navbar-mobile-link:hover {

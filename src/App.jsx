@@ -1,28 +1,21 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Menu, X, ChevronDown, ArrowDown,
-  Mail, Github, Globe, Code2, Zap, Smartphone, Palette,
-  GraduationCap, Briefcase, Phone, MessageCircle
-} from 'lucide-react'
+import { motion } from 'framer-motion'
 import './App.css'
 import { useVisitorTracking } from './hooks/useVisitorTracking'
 import { useProjects } from './hooks/useProjects'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
-import Projects from './components/Projects'
+import Projects from './components/Project'
 import Skills from './components/Skills'
-import Services from './components/Services'
-import Blog from './components/Blog'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import Test from './components/Test'
 
 function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
   const [mouseDown, setMouseDown] = useState(false)
+  const [theme, setTheme] = useState('dark')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { visitorCount } = useVisitorTracking()
   const { projects, loading } = useProjects()
@@ -42,14 +35,30 @@ function App() {
     }
   }, [])
 
-  // Scroll-reveal — runs once after mount
+  // Theme effect
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+      document.body.classList.remove('light-mode')
+    } else {
+      document.documentElement.classList.remove('dark')
+      document.body.classList.add('light-mode')
+    }
+  }, [theme])
+
+  // Intersection Observer for scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('active')
-      }),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+          }
+        })
+      },
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
+
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
@@ -62,8 +71,12 @@ function App() {
     }
   }
 
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
   return (
-    <div className="antialiased selection:bg-purple-500 selection:text-white bg-[#0a0a0f] text-white overflow-x-hidden">
+    <div className="antialiased selection:bg-purple-500 selection:text-white bg-white text-black dark:bg-[#0a0a0f] dark:text-white overflow-x-hidden">
 
       {/* Custom cursor — hidden on mobile via CSS */}
       <motion.div
@@ -76,24 +89,21 @@ function App() {
         transition={{ type: 'spring', stiffness: 500, damping: 28 }}
       />
 
-      <Navbar 
-        mobileMenuOpen={mobileMenuOpen} 
-        setMobileMenuOpen={setMobileMenuOpen} 
-        scrollToSection={scrollToSection} 
+      <Navbar
+        scrollToSection={scrollToSection}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
-      
+
       <main>
         <Hero scrollToSection={scrollToSection} />
         <About visitorCount={visitorCount} scrollToSection={scrollToSection} />
         <Projects projects={projects} loading={loading} />
         <Skills />
-        <Services />
-        <Blog />
         <Experience />
         <Contact />
-        <Test />
       </main>
-      
+
       <Footer />
     </div>
   )

@@ -6,7 +6,7 @@ const fallbackProjects = [
   {
     title: 'Chepsbook',
     description: 'A social-style website with modern layout and responsive interface.',
-    image: '/src/img/Screenshot 2026-03-12 145728.png',
+    image: '/src/img/chepbook.png',
     category: 'Social Website',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Chepsbook.com/#home',

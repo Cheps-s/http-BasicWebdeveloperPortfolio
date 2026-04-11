@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Github, Globe, Phone, MessageCircle, Facebook, Send, CheckCircle } from 'lucide-react'
-import './Contact.css'
+
 const links = [
   { icon: Mail,          label: 'Email',        value: 'manliclicandrei58@gmail.com',    href: 'mailto:manliclicandrei58@gmail.com' },
   { icon: Github,        label: 'GitHub',        value: 'github.com/Cheps-s',             href: 'https://github.com/Cheps-s' },
@@ -12,12 +12,7 @@ const links = [
 ]
 
 export default function Contact() {
-  // Fixed: Empty form state for user input (placeholders show your info instead)
-  const [form, setForm] = useState({ 
-    name: '', 
-    email: '', 
-    message: '' 
-  })
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -32,16 +27,26 @@ export default function Contact() {
     setTimeout(() => setSent(false), 4000)
   }
 
+  const inputStyle = {
+    background: '#13131f',
+    border: '1px solid rgba(255,255,255,0.07)',
+    transition: 'border-color 0.2s',
+  }
+
   return (
     <section id="contact" className="py-32 relative" style={{ backgroundColor: '#050508' }}>
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to top,rgba(168,85,247,0.07),transparent)' }} />
+        style={{ background: 'linear-gradient(to top,rgba(168,85,247,0.06),transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-purple-400 font-medium tracking-widest uppercase text-sm mb-4 block">Get In Touch</span>
           <h2 className="text-5xl md:text-6xl font-display font-bold mb-6">Let's Work Together</h2>
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
             Have a project in mind? Let's create something amazing together.
@@ -49,9 +54,12 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
-
-          {/* Contact links */}
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+          {/* Links */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
               I'm available for freelance work and open to new opportunities.
@@ -59,19 +67,26 @@ export default function Contact() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {links.map((l, i) => (
-                <motion.a key={l.label} href={l.href}
+                <motion.a
+                  key={l.label}
+                  href={l.href}
                   target={l.href.startsWith('http') ? '_blank' : undefined}
                   rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:border-purple-500/50 transition-all group border border-white/10 bg-white/5 backdrop-blur-sm">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
-                    style={{ background: 'rgba(168,85,247,0.12)' }}>
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.07 }}
+                  className="flex items-center gap-3 p-3 rounded-xl hover:border-purple-500/50 transition-all group border border-white/10 bg-white/5 backdrop-blur-sm"
+                >
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+                    style={{ background: 'rgba(168,85,247,0.12)' }}
+                  >
                     <l.icon className="w-4 h-4 text-purple-400" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs text-gray-500">{l.label}</div>
-                    <div className="text-white text-sm font-medium truncate">{l.value}</div>
+                    <div className="text-sm font-medium truncate" style={{ color: 'inherit' }}>{l.value}</div>
                   </div>
                 </motion.a>
               ))}
@@ -79,32 +94,43 @@ export default function Contact() {
           </motion.div>
 
           {/* Form */}
-          <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
             <form onSubmit={handleSubmit} className="space-y-5">
-
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
-                <input id="name" name="name" type="text" required
-                  value={form.name} onChange={handleChange} placeholder="Andrei Nyl Manliclic"
-                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
-                  style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
+                <input
+                  id="name" name="name" type="text" required
+                  value={form.name} onChange={handleChange}
+                  placeholder="Andrei Nyl Manliclic"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                  style={inputStyle}
+                />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
-                <input id="email" name="email" type="email" required
-                  value={form.email} onChange={handleChange} placeholder="manliclicandrei58@gmail.com"
-                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
-                  style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
+                <input
+                  id="email" name="email" type="email" required
+                  value={form.email} onChange={handleChange}
+                  placeholder="hello@example.com"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                  style={inputStyle}
+                />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                <textarea id="message" name="message" required rows={5}
+                <textarea
+                  id="message" name="message" required rows={5}
                   value={form.message} onChange={handleChange}
                   placeholder="Tell me about your project…"
-                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
-                  style={{ background: '#13131f', border: '1px solid rgba(255,255,255,0.07)' }} />
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none"
+                  style={inputStyle}
+                />
               </div>
 
               {sent && (
@@ -114,9 +140,13 @@ export default function Contact() {
                 </div>
               )}
 
-              <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
                 className="w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-purple-500/25"
-                style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}>
+                style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}
+              >
                 Send Message <Send className="w-5 h-5" />
               </motion.button>
 
@@ -125,7 +155,6 @@ export default function Contact() {
               </p>
             </form>
           </motion.div>
-
         </div>
       </div>
     </section>

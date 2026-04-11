@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './Navbar.css'
+
 const links = [
   { name: 'About',      href: '#about'      },
   { name: 'Projects',   href: '#projects'   },
   { name: 'Skills',     href: '#skills'     },
   { name: 'Experience', href: '#experience' },
+  { name: 'Services',   href: '#services'   },
+  { name: 'Blog',       href: '#blog'       },
 ]
 
 export default function Navbar({ scrollToSection, theme, toggleTheme }) {
-  const [open,     setOpen]     = useState(false)
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -20,63 +22,110 @@ export default function Navbar({ scrollToSection, theme, toggleTheme }) {
   }, [])
 
   const go = (href) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToSection(href)
     setOpen(false)
   }
 
+  const isDark = theme === 'dark'
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'nav-blur border-b border-white/5 shadow-lg shadow-purple-900/5' : 'bg-transparent'}`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? isDark
+            ? 'nav-blur border-b border-white/5 shadow-lg shadow-purple-900/5'
+            : 'bg-white/90 backdrop-blur-md border-b border-black/5 shadow-sm'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-
           {/* Logo */}
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-2xl font-display font-bold gradient-text">ANM</button>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="text-2xl font-display font-bold gradient-text"
+          >
+            ANM
+          </button>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-6">
-            {links.map(l => (
-              <button key={l.name} onClick={() => go(l.href)}
-                className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors text-sm font-medium">
+            {links.map((l) => (
+              <button
+                key={l.name}
+                onClick={() => go(l.href)}
+                className={`text-sm font-medium transition-colors hover:text-purple-400 ${
+                  isDark ? 'text-gray-300' : 'text-gray-600'
+                }`}
+              >
                 {l.name}
               </button>
             ))}
-            <button onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-[#1a1a1f] transition-colors">
-              {theme === 'dark' ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-600" />}
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full transition-colors ${
+                isDark ? 'bg-white/10 hover:bg-white/15' : 'bg-gray-100 hover:bg-gray-200'
+              }`}
+              aria-label="Toggle theme"
+            >
+              {isDark
+                ? <Sun className="w-5 h-5 text-yellow-400" />
+                : <Moon className="w-5 h-5 text-blue-600" />}
             </button>
-            <button onClick={() => go('#contact')}
-              className="px-6 py-2 rounded-full text-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105"
-              style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}>
+
+            <button
+              onClick={() => go('#contact')}
+              className="px-6 py-2 rounded-full text-white text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+              style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}
+            >
               Hire Me
             </button>
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden text-black dark:text-white" onClick={() => setOpen(!open)}>
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-3">
+            <button onClick={toggleTheme} className={`p-2 rounded-full ${isDark ? 'bg-white/10' : 'bg-gray-100'}`}>
+              {isDark ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
+            </button>
+            <button
+              onClick={() => setOpen(!open)}
+              className={isDark ? 'text-white' : 'text-gray-800'}
+            >
+              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile menu */}
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-[#050508]">
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className={`md:hidden border-t ${
+              isDark ? 'border-white/5 bg-[#050508]' : 'border-gray-200 bg-white'
+            }`}
+          >
             <div className="px-6 py-4 flex flex-col gap-4">
-              {links.map(l => (
-                <button key={l.name} onClick={() => go(l.href)}
-                  className="text-left text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors py-1">
+              {links.map((l) => (
+                <button
+                  key={l.name}
+                  onClick={() => go(l.href)}
+                  className={`text-left py-1 text-base transition-colors hover:text-purple-400 ${
+                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  }`}
+                >
                   {l.name}
                 </button>
               ))}
-              <button onClick={toggleTheme}
-                className="flex items-center gap-2 text-left py-1">
-                {theme === 'dark' ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-600" />}
-                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-              </button>
-              <button onClick={() => go('#contact')} className="text-left text-purple-400 font-semibold py-1">
+              <button
+                onClick={() => go('#contact')}
+                className="text-left text-purple-400 font-semibold py-1"
+              >
                 Hire Me
               </button>
             </div>

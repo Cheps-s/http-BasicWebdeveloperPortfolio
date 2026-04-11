@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Clock, Tag, ArrowRight, BookOpen } from 'lucide-react'
 
@@ -47,21 +47,25 @@ const posts = [
   },
 ]
 
-const Blog = () => {
+export default function Blog() {
   const [hovered, setHovered] = useState(null)
 
   return (
     <section id="blog" className="py-32 relative overflow-hidden" style={{ background: 'rgba(5,5,8,0.5)' }}>
-      <div className="absolute bottom-0 right-0 pointer-events-none"
-        style={{ width:'500px', height:'400px', background:'rgba(236,72,153,0.07)', borderRadius:'50%', filter:'blur(120px)' }} />
+      <div className="absolute bottom-0 right-0 pointer-events-none rounded-full"
+        style={{ width: '500px', height: '400px', background: 'rgba(236,72,153,0.06)', filter: 'blur(120px)' }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-          className="mb-16 flex items-end justify-between flex-wrap gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 flex items-end justify-between flex-wrap gap-6"
+        >
           <div>
             <span className="text-purple-400 font-medium tracking-widest uppercase text-sm mb-4 block">My Thoughts</span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Blog</h2>
-            <div className="h-1 w-20 rounded-full" style={{ background:'linear-gradient(to right,#a855f7,#ec4899)' }} />
+            <div className="h-1 w-20 rounded-full" style={{ background: 'linear-gradient(to right,#a855f7,#ec4899)' }} />
             <p className="text-gray-400 text-lg mt-6 max-w-2xl">
               Sharing what I learn — tutorials, personal stories, and thoughts on web development and tech.
             </p>
@@ -73,10 +77,16 @@ const Blog = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, i) => (
-            <motion.a key={post.title} href="#"
-              initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true }} transition={{ delay: i * 0.08 }}
-              onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}
+            <motion.a
+              key={post.title}
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
               className="group block"
             >
               <div className="glass-card rounded-2xl overflow-hidden h-full hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
@@ -90,7 +100,7 @@ const Blog = () => {
                       <Clock className="w-3 h-3" />{post.readTime}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3 leading-snug group-hover:text-purple-400 transition-colors">
+                  <h3 className="text-lg font-bold mb-3 leading-snug group-hover:text-purple-400 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">{post.excerpt}</p>
@@ -109,5 +119,3 @@ const Blog = () => {
     </section>
   )
 }
-
-export default Blog

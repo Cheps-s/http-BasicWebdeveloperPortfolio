@@ -1,75 +1,66 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Code2 } from 'lucide-react'
+import { ExternalLink, Code2, ImageOff } from 'lucide-react'
 
 const fallbackProjects = [
   {
-    title: 'Chepsbook',
-    description: 'A social-style website with modern layout and responsive interface.',
-    image: '/assets/img/chepbook.png',
+    title: 'Chepbook',
+    image: '/src/assets/img/chepbook.png',
     category: 'Social Website',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Chepsbook.com/#home',
   },
   {
     title: 'Andrei Nyl Portfolio',
-    description: 'Personal developer portfolio showcasing projects, skills, and UI animations.',
-    image: '/assets/img/1.png',
+    image: '/src/assets/img/1.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Andreinyl.com',
   },
   {
     title: 'AI Business Website',
-    description: 'A modern business website design with AI-generated content and sleek UI.',
-    image: '/assets/img/AIchat.png',
+    image: '/src/assets/img/AIchat.png',
     category: 'Business',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Parallax Portfolio',
-    description: 'My first portfolio website with parallax scrolling and interactive elements.',
-    image: '/assets/img/Parallax.png',
+    image: '/src/assets/img/Parallax.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Snake Game (C#)',
-    description: 'A C# console-based snake game showcasing early programming and logic skills.',
-    image: '/assets/img/snakeg.jpg',
+    image: '/src/assets/img/snakeg.jpg',
     category: 'Game',
     tags: ['C#', 'Console', 'Game Dev'],
     link: '#',
   },
   {
     title: 'Copy of YouTube',
-    description: 'A static YouTube clone built purely with HTML and CSS to practice layout skills.',
-    image: '/assets/img/copy.png',
+    image: '/src/assets/img/copy.png',
     category: 'UI Clone',
     tags: ['HTML', 'CSS'],
     link: '#',
   },
   {
     title: 'First Try Code',
-    description: 'My very first web application, showcasing initial skills in HTML, CSS, and JavaScript.',
-    image: '/assets/img/First try code.png',
+    image: '/src/assets/img/First try code.png',
     category: 'Practice',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Second try Portfolio',
-    description: 'A second attempt at a personal portfolio, demonstrating improved design and coding skills.',
-    image: '/assets/img/second.png',
+    image: '/src/assets/img/second.png',
     category: 'Animation',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'PixelHub',
-    description: 'Upcoming full-stack project showcasing React.js and Node.js with MongoDB.',
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
     category: 'Full Stack',
     tags: ['React', 'Node.js', 'MongoDB'],
@@ -91,6 +82,29 @@ const categoryColors = {
 const defaultBadge = { bg: 'rgba(168,85,247,0.2)', border: '1px solid rgba(168,85,247,0.3)', color: '#d8b4fe' }
 
 function getBadge(category) { return categoryColors[category] || defaultBadge }
+
+function ProjectImage({ src, alt }) {
+  const [errored, setErrored] = useState(false)
+
+  if (errored) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center gap-2"
+        style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.1))' }}>
+        <ImageOff className="w-10 h-10 text-gray-600" />
+        <span className="text-xs text-gray-600">No preview</span>
+      </div>
+    )
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+      onError={() => setErrored(true)}
+    />
+  )
+}
 
 export default function Projects({ projects = [], loading }) {
   const data = useMemo(() => (projects.length ? projects : fallbackProjects), [projects])
@@ -166,12 +180,7 @@ export default function Projects({ projects = [], loading }) {
                       </div>
                     )}
                     <div className="h-56 relative overflow-hidden bg-gradient-to-br from-purple-900/30 to-pink-900/20">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => { e.target.style.display = 'none' }}
-                      />
+                      <ProjectImage src={p.image} alt={p.title} />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                       <div className="absolute bottom-4 left-4">
                         <span className="px-3 py-1 rounded-full text-xs"
@@ -191,8 +200,7 @@ export default function Projects({ projects = [], loading }) {
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{p.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4 line-clamp-2">{p.description}</p>
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-purple-400 transition-colors">{p.title}</h3>
                       <div className="flex gap-2 flex-wrap">
                         {p.tags.map((t) => (
                           <span key={t} className="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded flex items-center gap-1">

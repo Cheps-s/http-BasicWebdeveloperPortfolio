@@ -42,7 +42,7 @@ export default function About({ visitorCount = 0 }) {
                 {/* Try to load image, fallback to gradient avatar */}
                 <div className="relative w-full bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-purple-900/60 flex items-center justify-center" style={{ height: '520px' }}>
                 <img
-                src="/src/img/Nyl.jpg"
+                src="/public/img/Nyl.jpg"
                 alt="Andrei Nyl Manliclic"
                 className="w-full h-full object-cover object-top"
                 onError={(e) => { e.target.style.display = 'none'; }}

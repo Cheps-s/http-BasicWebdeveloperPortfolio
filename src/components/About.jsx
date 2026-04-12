@@ -40,11 +40,11 @@ export default function About({ visitorCount = 0 }) {
               {/* Card with avatar placeholder */}
               <div className="relative rounded-2xl overflow-hidden border border-purple-500/20">
                 {/* Try to load image, fallback to gradient avatar */}
-                <div className="relative w-full aspect-square bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-purple-900/60 flex items-center justify-center">
+                <div className="relative w-full bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-purple-900/60 flex items-center justify-center" style={{ height: '520px' }}>
                 <img
-                src="/src/img/Nylz.jpg"
+                src="/src/img/Nyl.jpg"
                 alt="Andrei Nyl Manliclic"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 onError={(e) => { e.target.style.display = 'none'; }}
                 />
                   {/* Fallback initials avatar shown behind image */}

@@ -14,7 +14,7 @@ const fallbackProjects = [
   {
     title: 'Andrei Nyl Portfolio',
     description: 'Personal developer portfolio showcasing projects, skills, and UI animations.',
-    image: '/src/img/Screenshot 2026-03-12 150045.png',
+    image: '/src/img/1.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Andreinyl.com',
@@ -22,7 +22,7 @@ const fallbackProjects = [
   {
     title: 'AI Business Website',
     description: 'A modern business website design with AI-generated content and sleek UI.',
-    image: '/src/img/Screenshot 2026-03-13 162017.png',
+    image: '/src/img/AIchat.png',
     category: 'Business',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
@@ -30,7 +30,7 @@ const fallbackProjects = [
   {
     title: 'Parallax Portfolio',
     description: 'My first portfolio website with parallax scrolling and interactive elements.',
-    image: '/src/img/Screenshot 2026-03-12 220038.png',
+    image: '/src/img/Parallax.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',

@@ -2,59 +2,68 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Code2, ImageOff } from 'lucide-react'
 
+import chepbook from '../assets/img/chepbook.png'
+import portfolio1 from '../assets/img/1.png'
+import aichat from '../assets/img/AIchat.png'
+import parallax from '../assets/img/Parallax.png'
+import snakeg from '../assets/img/snakeg.jpg'
+import copy from '../assets/img/copy.png'
+import firstTry from '../assets/img/First try code.png'
+import second from '../assets/img/second.png'
+
 const fallbackProjects = [
   {
     title: 'Chepbook',
-    image: '/src/assets/img/chepbook.png',
+    image: chepbook,
     category: 'Social Website',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Chepsbook.com/#home',
   },
   {
     title: 'Andrei Nyl Portfolio',
-    image: '/src/assets/img/1.png',
+    image: portfolio1,
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Andreinyl.com',
   },
   {
     title: 'AI Business Website',
-    image: '/src/assets/img/AIchat.png',
+    image: aichat,
     category: 'Business',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Parallax Portfolio',
-    image: '/src/assets/img/Parallax.png',
+    image: parallax,
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Snake Game (C#)',
-    image: '/src/assets/img/snakeg.jpg',
+    image: snakeg,
     category: 'Game',
     tags: ['C#', 'Console', 'Game Dev'],
     link: '#',
   },
   {
     title: 'Copy of YouTube',
-    image: '/src/assets/img/copy.png',
+    image: copy,
     category: 'UI Clone',
     tags: ['HTML', 'CSS'],
     link: '#',
   },
   {
     title: 'First Try Code',
-    image: '/src/assets/img/First try code.png',
+    image: firstTry,
     category: 'Practice',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
   },
   {
     title: 'Second try Portfolio',
-    image: '/src/assets/img/second.png',
+    image: second,
     category: 'Animation',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
@@ -114,7 +123,6 @@ export default function Projects({ projects = [], loading }) {
 
   return (
     <section id="projects" className="py-32 relative" style={{ backgroundColor: '#0a0a0f' }}>
-      {/* Subtle glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{ width: '600px', height: '300px', background: 'rgba(168,85,247,0.05)', borderRadius: '50%', filter: 'blur(120px)' }} />
 

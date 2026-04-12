@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { MapPin, GraduationCap, Code, Sparkles, Users } from 'lucide-react'
-import profile from "../assets//img/andrei.jpg";
+import profile from "../assets/img/andrei.jpg";
 
 
 const baseInfo = [

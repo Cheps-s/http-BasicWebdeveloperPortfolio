@@ -6,7 +6,7 @@ const fallbackProjects = [
   {
     title: 'Chepsbook',
     description: 'A social-style website with modern layout and responsive interface.',
-    image: '/public/img/chepbook.png',
+    image: '/assets/img/chepbook.png',
     category: 'Social Website',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Chepsbook.com/#home',
@@ -14,7 +14,7 @@ const fallbackProjects = [
   {
     title: 'Andrei Nyl Portfolio',
     description: 'Personal developer portfolio showcasing projects, skills, and UI animations.',
-    image: '/public/img/1.png',
+    image: '/assets/img/1.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://cheps-s.github.io/Andreinyl.com',
@@ -22,7 +22,7 @@ const fallbackProjects = [
   {
     title: 'AI Business Website',
     description: 'A modern business website design with AI-generated content and sleek UI.',
-    image: '/public/img/AIchat.png',
+    image: '/assets/img/AIchat.png',
     category: 'Business',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
@@ -30,7 +30,7 @@ const fallbackProjects = [
   {
     title: 'Parallax Portfolio',
     description: 'My first portfolio website with parallax scrolling and interactive elements.',
-    image: '/public/img/Parallax.png',
+    image: '/assets/img/Parallax.png',
     category: 'Portfolio',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
@@ -38,7 +38,7 @@ const fallbackProjects = [
   {
     title: 'Snake Game (C#)',
     description: 'A C# console-based snake game showcasing early programming and logic skills.',
-    image: '/public/img/snakeg.jpg',
+    image: '/assets/img/snakeg.jpg',
     category: 'Game',
     tags: ['C#', 'Console', 'Game Dev'],
     link: '#',
@@ -46,7 +46,7 @@ const fallbackProjects = [
   {
     title: 'Copy of YouTube',
     description: 'A static YouTube clone built purely with HTML and CSS to practice layout skills.',
-    image: '/public/img/copy.png',
+    image: '/assets/img/copy.png',
     category: 'UI Clone',
     tags: ['HTML', 'CSS'],
     link: '#',
@@ -54,7 +54,7 @@ const fallbackProjects = [
   {
     title: 'First Try Code',
     description: 'My very first web application, showcasing initial skills in HTML, CSS, and JavaScript.',
-    image: '/public/img/First try code.png',
+    image: '/assets/img/First try code.png',
     category: 'Practice',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',
@@ -62,7 +62,7 @@ const fallbackProjects = [
   {
     title: 'Second try Portfolio',
     description: 'A second attempt at a personal portfolio, demonstrating improved design and coding skills.',
-    image: '/public/img/second.png',
+    image: '/assets/img/second.png',
     category: 'Animation',
     tags: ['HTML', 'CSS', 'JavaScript'],
     link: '#',

@@ -4,12 +4,13 @@ import { ExternalLink, Code2, ImageOff } from 'lucide-react'
 
 import chepbook from '../assets/img/chepbook.png'
 import portfolio1 from '../assets/img/1.png'
-import aichat from '../assets/img/AIchat.png'
+import schola from '../assets/img/schola.png'
 import parallax from '../assets/img/Parallax.png'
 import snakeg from '../assets/img/snakeg.jpg'
 import copy from '../assets/img/copy.png'
 import firstTry from '../assets/img/First try code.png'
 import second from '../assets/img/second.png'
+import { s } from 'framer-motion/client'
 
 const fallbackProjects = [
   {
@@ -23,15 +24,15 @@ const fallbackProjects = [
     title: 'Andrei Nyl Portfolio',
     image: portfolio1,
     category: 'Portfolio',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['HTML', 'CSS',],
     link: 'https://cheps-s.github.io/Andreinyl.com',
   },
   {
-    title: 'AI Business Website',
-    image: aichat,
-    category: 'Business',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    link: '#',
+    title: 'Schola',
+    image: schola,
+    category: 'school project',
+    tags: ['PHP','HTML', 'CSS', 'JavaScript'],
+    link: 'https://schola.infinityfree.me/',
   },
   {
     title: 'Parallax Portfolio',
@@ -58,7 +59,7 @@ const fallbackProjects = [
     title: 'First Try Code',
     image: firstTry,
     category: 'Practice',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['HTML',],
     link: '#',
   },
   {

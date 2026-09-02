@@ -12,7 +12,7 @@ const skillCategories = [
     title: 'Design Tools',
     icon: Brush,
     gradient: 'linear-gradient(135deg,#f97316,#ec4899)',
-    skills: ['Figma', 'Adobe XD', 'Wireframing', 'Prototyping'],
+    skills: ['Figma', 'Canva', 'Wireframing', 'Prototyping'],
   },
   {
     title: 'AI Tools',

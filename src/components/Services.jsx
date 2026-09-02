@@ -13,8 +13,8 @@ const services = [
   {
     icon: Palette,
     title: 'UI/UX Design',
-    desc: 'Designing clean, intuitive user interfaces with Figma and Adobe XD focused on usability and modern aesthetics.',
-    tags: ['Figma', 'Adobe XD', 'Prototyping'],
+    desc: 'Designing clean, intuitive user interfaces with Figma and Canva, focused on usability and modern aesthetics.',
+    tags: ['Figma', 'Canva', 'Prototyping'],
     gradient: 'linear-gradient(135deg,#f97316,#ec4899)',
   },
   {

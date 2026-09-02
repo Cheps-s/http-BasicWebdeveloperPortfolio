@@ -44,14 +44,14 @@ export default function Hero({ scrollToSection }) {
                 className="font-display font-extrabold leading-tight"
                 style={{ fontSize: 'clamp(2.8rem, 5vw, 5rem)', letterSpacing: '-0.04em' }}
               >
-                <span className="block text-white dark:text-white" style={{ color: 'var(--text-h, #fff)' }}>NylzTech</span>
-                <span className="block text-white dark:text-white">Front-End</span>
+                <span className="block text-white dark:text-white" style={{ color: 'var(--text-h, #fff)' }}>Nylz</span>
+                <span className="block text-white dark:text-white">Software</span>
                 <span className="block gradient-text">Developer</span>
               </h1>
 
               {/* Sub */}
               <p className="text-gray-400 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Front-end developer crafting performant, beautiful web applications
+                software developer crafting performant, beautiful web applications
                 with a passion for clean code and thoughtful UX.
               </p>
 

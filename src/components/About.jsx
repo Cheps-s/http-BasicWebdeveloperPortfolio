@@ -90,13 +90,13 @@ export default function About({ visitorCount = 0 }) {
           >
             <span className="text-purple-400 font-medium tracking-widest uppercase text-sm mb-6 block">About Me</span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
-               Front-End Developer &amp; <br />
-              <span className="gradient-text">Vibe Coding</span>
+               Aspiring Software Developer &amp; <br />
+              <span className="gradient-text">UI/UX Designer</span>
             </h2>
 
             <div className="space-y-4 text-gray-400 leading-relaxed mb-8">
               <p>
-                Hi, I'm <strong className="text-white">Andrei Nyl Manliclic</strong>, an aspiring front-end developer
+                Hi, I'm <strong className="text-white">Andrei Nyl Manliclic</strong>, an aspiring software developer
                 completing my Bachelor of Science in Information Technology. I love creating modern, user-friendly
                 websites using the latest technologies.
               </p>

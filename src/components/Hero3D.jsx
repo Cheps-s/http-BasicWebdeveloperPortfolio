@@ -40,7 +40,7 @@ export default function Hero3D() {
             <div className="code-lines">
               <div className="code-line"><span className="c-keyword">const</span> <span className="c-var">dev</span> = {'{'}</div>
               <div className="code-line pl-2"><span className="c-key">name</span>: <span className="c-str">"Nylz"</span>,</div>
-              <div className="code-line pl-2"><span className="c-key">role</span>: <span className="c-str">"FrontEnd Dev"</span>,</div>
+              <div className="code-line pl-2"><span className="c-key">role</span>: <span className="c-str">"Software Dev"</span>,</div>
               <div className="code-line pl-2"><span className="c-key">stack</span>: [<span className="c-str">"React"</span>, <span className="c-str">"Node"</span>],</div>
               <div className="code-line pl-2"><span className="c-key">coffee</span>: <span className="c-num">Infinity</span></div>
               <div className="code-line">{'};'}</div>
